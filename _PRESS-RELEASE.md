@@ -1,4 +1,5 @@
 # Project Name #
+soundSource
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -15,30 +16,30 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
- 
+
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  soundSource
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Let the crowd manage your music.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  soundSource allows you to crowdsource music for any party or event. Guests can add songs to a playlist and vote for their favorite tunes, controlling the order of playback in real time.
 
 ## Problem ##
-  > Describe the problem your product solves.
+Have you ever wanted to contribute to the music vibe at a party? Well, now you can. 
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+soundSource lets you organize playlists and share them with guests. Guests can contribute songs to the playlist and vote on which songs they want to play next.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+“It’s the most democratic way to play music at a party, and the application gives everyone a chance to bring their musical tastes to the speaker.” - Ben Brian (Product Manager)
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+First, host a playlist. Second, guests find your playlist using a short, unique code. Finally, guests search for songs, add them to the playlist, and upvote and downvote songs to their liking.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+“The easiest app I’ve ever used to manage a party playlist. It’s a beautiful application, and it even plays songs when my friends run out of song ideas.” - Taylor Swift
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+Go create your own digital jukebox for your next event or party, and let us know how it goes. We love hearing from you as much as we love listening to music. (email: soundSourceFeedback@gmail.com)
