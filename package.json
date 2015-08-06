@@ -1,0 +1,28 @@
+{
+  "name": "soundsource",
+  "version": "1.0.0",
+  "description": "rock your vote on any playlist",
+  "main": "app.js",
+  "scripts": {
+    "test": "karma start karma.conf.js",
+    "start": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csaden/greenfield.git"
+  },
+  "keywords": [
+    "angular",
+    "mongo",
+    "node",
+    "express",
+    "music",
+    "playlist"
+  ],
+  "author": "metallicgazelle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/csaden/greenfield/issues"
+  },
+  "homepage": "https://github.com/csaden/greenfield#readme"
+}
