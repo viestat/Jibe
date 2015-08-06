@@ -1,0 +1,34 @@
+<!-- setting dependencies -->
+<html ng-app='djBooth'>
+<script src='../bower_components/angular/angular.js'></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../JS/app.js"></script>
+<script type="text/javascript" src="../JS/controllers.js"></script>
+<script type="text/javascript" src="../JS/factories.js"></script>
+<link rel='stylesheet' type='text/css' href='../bower_components/bootstrap/dist/css/bootstrap.css'>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Spotisound</title>
+</head>
+
+<body ng-controller='searchController' class="conainer center-block text-center">
+    <div class='jumbotron'>
+        <h1>Party On</h1>
+        <iframe src="https://embed.spotify.com/?uri=spotify:track:5cZHmnsLKUweTq1KuWJAu8" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+        <form name='searchForm' class='form-inline' ng-submit='getResults()'>
+            <input type='text' class='form-control' ng-model='song' placeHolder='Select a song'>
+            <input class="btn" type='submit' value="Submit">
+        </form>
+        <!-- <ul>'this is where the playlist is' -->
+            <li ng-repeat="songs in results | orderBy:'-votes'">
+                <div>{{song.songname}}</div>
+                <div>{{song.votes}}</div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
