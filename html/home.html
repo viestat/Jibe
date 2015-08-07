@@ -18,12 +18,12 @@
     <div class='jumbotron'>
         <h1>Party On</h1>
         <iframe src="https://embed.spotify.com/?uri=spotify:track:5cZHmnsLKUweTq1KuWJAu8" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
-        <form name='searchForm' class='form-inline' ng-submit='getResults()'>
-            <input type='text' class='form-control' ng-model='song' placeHolder='Select a song'>
+        <form name='searchForm' class='form-inline' ng-submit='getSong()'>
+            <input type='text' class='form-control' ng-model='song' placeHolder='Select a song' update-search ng-update='updateSearch()'>
             <input class="btn" type='submit' value="Submit">
         </form>
         <!-- <ul>'this is where the playlist is' -->
-            <li ng-repeat="songs in results | orderBy:'-votes'">
+            <li ng-repeat="song in results">
                 <div>{{song.songname}}</div>
                 <div>{{song.votes}}</div>
             </li>
