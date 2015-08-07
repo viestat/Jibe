@@ -14,20 +14,30 @@
     <title>Spotisound</title>
 </head>
 
-<body ng-controller='searchController' class="conainer center-block text-center">
-    <div class='jumbotron'>
-        <h1>Party On</h1>
+<body ng-controller='searchController' class=" jumbotron center-block text-center">
+    <div class='container-fluid'>
+        <h1>#PartyRoom</h1>
         <iframe src="https://embed.spotify.com/?uri=spotify:track:5cZHmnsLKUweTq1KuWJAu8" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
         <form name='searchForm' class='form-inline' ng-submit='getSong()'>
             <input type='text' class='form-control' ng-model='song' placeHolder='Select a song' update-search ng-update='updateSearch()'>
-            <input class="btn" type='submit' value="Submit">
         </form>
-        <!-- <ul>'this is where the playlist is' -->
-            <li ng-repeat="song in results">
-                <div>{{song.songname}}</div>
-                <div>{{song.votes}}</div>
-            </li>
-        </ul>
+        <div class='panel panel-primary'>
+          <div class='panel-heading'>
+                    <h3 class='panel-title'> Playlist</h3>
+                </div>
+            <ul class='panel body list-unstyled'>
+                <!-- 'this is where the playlist is' -->
+                <li ng-repeat="song in results" class="row-fluid inline " >
+                <p>
+                    <div>{{song.songname}} -{{song.artist}} {{song.votes}}
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                    </div>
+                    
+                </p>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
 
