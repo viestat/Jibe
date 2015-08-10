@@ -1,0 +1,44 @@
+<!-- setting dependencies -->
+<html ng-app='djBooth'>
+<script src='../bower_components/angular/angular.js'></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../JS/app.js"></script>
+<script type="text/javascript" src="../JS/controllers.js"></script>
+<script type="text/javascript" src="../JS/factories.js"></script>
+<link rel='stylesheet' type='text/css' href='../bower_components/bootstrap/dist/css/bootstrap.css'>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Spotisound</title>
+</head>
+
+<body ng-controller='searchController' class=" jumbotron center-block text-center">
+    <div class='container-fluid'>
+        <h1>#PartyRoom</h1>
+        <iframe src="https://embed.spotify.com/?uri=spotify:track:5cZHmnsLKUweTq1KuWJAu8" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+        <form name='searchForm' class='form-inline' ng-submit='getSong()'>
+            <input type='text' class='form-control' ng-model='song' placeHolder='Select a song' update-search ng-update='updateSearch()'>
+        </form>
+        <div class='panel panel-primary'>
+          <div class='panel-heading'>
+                    <h3 class='panel-title'> Playlist</h3>
+                </div>
+            <ul class='panel body list-unstyled'>
+                <!-- 'this is where the playlist is' -->
+                <li ng-repeat="song in results" class="row-fluid inline " >
+                <p>
+                    <div>{{song.songname}} -{{song.artist}} {{song.votes}}
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                    </div>
+                    
+                </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
