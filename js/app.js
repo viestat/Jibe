@@ -2,7 +2,6 @@
 angular.module('djBooth', [
                'djBooth.controllers',
                'djBooth.factories',
-               'djBooth.directives',
                'ngRoute',
                'ngSanitize',
                'ui.select'
