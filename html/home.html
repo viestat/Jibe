@@ -29,12 +29,14 @@
         </form>
  -->
         <!-- search field -->
-        <ui-select ng-model='songs' theme="bootstrap" reset-search-input="false" style="width: 300px;">
-            <ui-select-match placeholder="Enter a song...">{{$select.selected.result}}</ui-select-match>
-            <ui-select-choices repeat="result in results |limitTo:10" refresh="getSong($select.search)" refresh-delay="0">
-                <div ng-bind-html="result |highlight: $select.search"></div>
+        <p>selected: {{result.selected}}</p>
+        <ui-select ng-model='result.selected' theme="bootstrap" ng-disabled="false" reset-search-input="false" uiSelectConfig.appendToBody = true; style="width: 300px;">
+            <ui-select-match placeholder="Enter a song...">{{$select.selected}}</ui-select-match>
+            <ui-select-choices repeat="result in results |limitTo:10" refresh="getSongs($select.search)" refresh-delay="0" ng-click='selectSong(result.selected)'>
+                <div ng-bind-html="result.songname |highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
+
         <!-- playlist -->
         <div class='panel panel-primary'>
             <div class='panel-heading'>
@@ -42,11 +44,11 @@
             </div>
             <ul class='panel body list-unstyled'>
                 <!-- 'this is where the playlist is' -->
-                <li ng-repeat="song in results" class="row-fluid inline ">
+                <li ng-repeat="song in playList" class="row-fluid inline ">
                     <p>
                         <div>{{song.songname}} -{{song.artist}} {{song.votes}}
-                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                            <span  ng-click='upVote()'class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            <span ng-click='downVote()'class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                         </div>
                     </p>
                 </li>
