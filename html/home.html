@@ -4,6 +4,7 @@
 <script src="../bower_components/angular-route/angular-route.js"></script>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/underscore/underscore.js"></script>
 <!-- UI select components -->
 <script src="../bower_components/angular-ui-select/dist/select.js"></script>
 <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -29,11 +30,11 @@
         </form>
  -->
         <!-- search field -->
-        <p>selected: {{result.selected}}</p>
-        <ui-select ng-model='result.selected' theme="bootstrap" ng-disabled="false" reset-search-input="false" uiSelectConfig.appendToBody = true; style="width: 300px;">
-            <ui-select-match placeholder="Enter a song...">{{$select.selected}}</ui-select-match>
-            <ui-select-choices repeat="result in results |limitTo:10" refresh="getSongs($select.search)" refresh-delay="0" ng-click='selectSong(result.selected)'>
-                <div ng-bind-html="result.songname |highlight: $select.search"></div>
+        <p>selected: {{result.selected.name}}</p>
+        <ui-select ng-model='result.selected'  on-select='selectSong(result.selected)'  theme="bootstrap" ng-disabled="false" reset-search-input="false" uiSelectConfig.appendToBody = true; style="width: 300px;">
+            <ui-select-match placeholder="Enter a song...">{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="result in results |limitTo:10" refresh="getSongs($select.search)" refresh-delay="0">
+                <div ng-bind-html="result.name |highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
 
@@ -46,7 +47,7 @@
                 <!-- 'this is where the playlist is' -->
                 <li ng-repeat="song in playList" class="row-fluid inline ">
                     <p>
-                        <div>{{song.songname}} -{{song.artist}} {{song.votes}}
+                        <div>{{song.name}} -{{song.artists[0]}} {{song.votes}}
                             <span  ng-click='upVote()'class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                             <span ng-click='downVote()'class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                         </div>

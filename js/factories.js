@@ -23,7 +23,8 @@ angular.module('djBooth.factories', [])
       Accept: "application/json"
     })
     .then(function(resp){
-      var searchResults = JSON.parse(resp.data);
+      var searchResults = resp.data;
+    
       // Limit = # of search results per page, returned from spotify
       var limit = searchResults["tracks"]["limit"];
       // Array of track objects from search
@@ -46,6 +47,7 @@ angular.module('djBooth.factories', [])
         _.each(item["artists"], function(artist){
           entry["artists"].push(artist["name"]);
         });
+        console.log(entry)
         results.push(entry);
       });
 

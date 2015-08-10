@@ -34,29 +34,12 @@ angular.module('djBooth.controllers', [])
     .controller('searchController', function($scope, $window, searchSpotify) {
 
         // the results array that houses the songs currently in the queue
-        $scope.playList = [{
-            songname: 'Semi-Charmed Life',
-            artist: 'Third Eye Blind',
-            votes: 3
-        }, {
-            songname: 'Tubthumping',
-            artist: 'Chumbawamba',
-            votes: 0
-        }];
+        $scope.playList = [];
 
-        $scope.results =[{
-            songname: 'Semi-Charmed Life',
-            artist: 'Third Eye Blind',
-            votes: 3
-        }, {
-            songname: 'Tubthumping',
-            artist: 'Chumbawamba',
-            votes: 0
-        }]
+        $scope.results =[]
         $scope.result =[]
         //this function adds whichever song is clicked in the search field to the playlist 
         $scope.getSongs = function(reqString) {
-          console.log(reqString)
           searchSpotify.getData(reqString).then(function(data){
             $scope.results = data;
           })
@@ -66,8 +49,10 @@ angular.module('djBooth.controllers', [])
 
           }
           $scope.selectSong = function(data){
-
+            data.votes = 0;
+            data.id = Math.random()
             console.log(data)
+            $scope.playList.push(data)
           }
             // searchSpotify.getData(data)
 
