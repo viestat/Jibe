@@ -22,7 +22,7 @@ angular.module('djBooth.factories', [])
 // the user can see the updated playlist when after they add somethng to it)
 var getQueue = function($http){
   return $http({
-    method: 'GET'
+    method: 'GET',
     url: 'OUR DB'
   })
   .then(function(resp){
