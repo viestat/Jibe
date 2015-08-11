@@ -9,16 +9,18 @@ var Schema = mongoose.Schema;
 var PlaylistSchema = new Schema({
   _creator : {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    require: true
   },
   _id: {
-    type: String, unique: true,
+    type: String,
+    unique: true,
     'default': shortid.generate
   },
   songs: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Song' // references Song _id see mongoose Populations
+      ref: 'Song' // references Song _id see mongoose Populations and document.populate()
     }
   ],
   playedSongs: [
@@ -37,7 +39,7 @@ PlaylistSchema.methods.hasSong = function (songId) {
   var hasSong;
 
   this.populate('songs.song').exec(function(err, songs) {
-    if (err) { throw new Error('Playlist error: could not check if song has playlist.'); }
+    if (err) throw new Error('Playlist Error: could not check if song in playlist.');
     hasSong = songs.some(function(song) {
       return song.spotifyId === songId;
     });
@@ -45,6 +47,19 @@ PlaylistSchema.methods.hasSong = function (songId) {
 
   return hasSong;
 };
+
+PlaylistSchema.methods.hasPlayed = function(songId) {
+  var hasPlayed;
+
+  this.populate('playedSongs.song').exec(function(err, songs) {
+    if (err) throw new Error('Playlist Error: could not check if song was played for playlist.');
+    hasPlayed = songs.some(function(song) {
+      return song.spotifyId === songId;
+    });
+  });
+
+  return hasPlayed;
+}
 
 PlaylistSchema.pre('save', function(next) {
   this.updated_at = new Date();
