@@ -1,4 +1,4 @@
-var playlistController = require('./playlistController.js');
+var playlistController = require('./playlistController');
 
 module.exports = function (app) {
   // app === playlistRouter injected from middlware.js

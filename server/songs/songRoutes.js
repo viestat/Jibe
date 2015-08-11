@@ -1,4 +1,4 @@
-var songController = require('./songController.js');
+var songController = require('./songController');
 
 module.exports = function (app) {
   // app === songRouter injected from middlware.js
