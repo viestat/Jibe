@@ -1,0 +1,29 @@
+{
+  "name": "soundspot",
+  "main": "server.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/metallic-gazelle/greenfield",
+  "authors": [
+    "Max Ince <ince.max@gmail.com>"
+  ],
+  "keywords": [
+    "dependencies"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.3",
+    "bootstrap": "~3.3.5",
+    "angular-route": "~1.4.3",
+    "angular-ui-select": "~0.12.1",
+    "angular-sanitize": "~1.4.3",
+    "underscore": "~1.8.3"
+  }
+}
