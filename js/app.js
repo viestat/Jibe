@@ -9,14 +9,26 @@ angular.module('djBooth', [
 //route provider is here
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
-    .when('/home', {
+    .when('/host/*', {
       templateUrl: '../HTML/home.html',
-      controller: 'searchController',
+      controller: 'searchController'
+    })
+    .when('/guest/*', {
+      templateUrl:'../HTML/guest.html',
+      controller: 'searchController'
+    })
+    .when('/signin', {
+      templateUrl:'../HTML/signin.html',
+      controller: 'searchController'
+
+    })
+    .otherwise({
+      redirectTo:'/signin'
     })
 
 })
 //run function is called on the app to start the app
 .run(function ($rootScope, $location) {
   
-      $location.path('/home');
+      $location.path('/');
 });
