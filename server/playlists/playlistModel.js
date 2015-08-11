@@ -32,6 +32,20 @@ var PlaylistSchema = new Schema({
   }
 });
 
+
+PlaylistSchema.methods.hasSong = function (songId) {
+  var hasSong;
+
+  this.populate('songs.song').exec(function(err, songs) {
+    if (err) { throw new Error('Playlist error: could not check if song has playlist.'); }
+    hasSong = songs.some(function(song) {
+      return song.spotifyId === songId;
+    });
+  });
+
+  return hasSong;
+};
+
 PlaylistSchema.pre('save', function(next) {
   this.updated_at = new Date();
   next();
