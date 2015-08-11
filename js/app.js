@@ -2,7 +2,9 @@
 angular.module('djBooth', [
                'djBooth.controllers',
                'djBooth.factories',
-               'ngRoute'
+               'ngRoute',
+               'ngSanitize',
+               'ui.select'
                ])
 //route provider is here
 .config(function($routeProvider, $httpProvider) {

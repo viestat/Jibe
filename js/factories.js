@@ -23,7 +23,8 @@ angular.module('djBooth.factories', [])
       Accept: "application/json"
     })
     .then(function(resp){
-      var searchResults = JSON.parse(resp.data);
+      var searchResults = resp.data;
+    
       // Limit = # of search results per page, returned from spotify
       var limit = searchResults["tracks"]["limit"];
       // Array of track objects from search
@@ -37,7 +38,7 @@ angular.module('djBooth.factories', [])
           "name": item["name"],
           "artists": [],
           "album": item["album"]["name"],
-          "coverArt": item["album"]["images"],
+          "coverArt": item["album"]["images"][2]["url"],
           "duration_ms": item["duration_ms"],
           "popularity": item["popularity"],
           "preview_url": item["preview_url"],
@@ -46,6 +47,7 @@ angular.module('djBooth.factories', [])
         _.each(item["artists"], function(artist){
           entry["artists"].push(artist["name"]);
         });
+        console.log(entry)
         results.push(entry);
       });
 
@@ -64,7 +66,7 @@ angular.module('djBooth.factories', [])
 // the user can see the updated playlist when after they add somethng to it)
 var getQueue = function($http){
   return $http({
-    method: 'GET'
+    method: 'GET',
     url: 'OUR DB'
   })
   .then(function(resp){
@@ -82,7 +84,8 @@ var getQueue = function($http){
   }
 
   return {
-    addSong: addSong,
+    getQueue: getQueue,
+    addSong: addSong
   }
 
 })
