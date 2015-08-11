@@ -10,6 +10,8 @@ var mongoose = require('mongoose'),
 // This will return the following output:
 // ISODate("2012-10-15T21:26:17Z")
 
+var Schema = mongoose.Schema;
+
 //===========================
 // Song schema
 //===========================

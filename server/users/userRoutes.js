@@ -1,4 +1,4 @@
-var userController = require('./userController.js');
+var userController = require('./userController');
 
 module.exports = function (app) {
   // app === userRouter injected from middlware.js

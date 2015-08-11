@@ -3,6 +3,8 @@ var mongoose = require('mongoose'),
     Q        = require('q'),
     SALT_WORK_FACTOR  = 10;
 
+var Schema = mongoose.Schema;
+
 //===========================
 // User schema
 //===========================

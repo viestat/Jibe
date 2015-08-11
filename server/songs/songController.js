@@ -1,4 +1,4 @@
-var Song = require('./songModel.js'),
+var Song = require('./songModel'),
     Q    = require('q');
 
 module.exports = {

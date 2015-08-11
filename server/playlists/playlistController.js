@@ -1,6 +1,6 @@
-var Playlist = require('./playlistModel.js'),
-    SongController = require('./songController.js'),
-    Q    = require('q');
+var Playlist       = require('./playlistModel'),
+    SongController = require('../songs/songController'),
+    Q              = require('q');
 
 module.exports = {
 

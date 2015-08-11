@@ -1,9 +1,14 @@
 var express        = require('express'),
     bodyParser     = require('body-parser'),
-    methodOverride = require('method-override');
+    methodOverride = require('method-override'),
+    mongoose       = require('mongoose');
 
 // connect to mongo database named soundsource
-mongoose.connect('mongodb://localhost/soundsource');
+mongoose.connect('mongodb://127.0.0.1:27017/jibe');
+
+mongoose.connection.once('connected', function() {
+  console.log('Connected to database!');
+});
 
 // set the port
 var port = process.env.PORT || 8080;
