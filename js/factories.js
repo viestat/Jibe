@@ -35,14 +35,14 @@ angular.module('djBooth.factories', [])
       // Iterate through search results, 
       _.each(items, function(item){
         var entry = {
-          "name": item["name"],
+          "song_name": item["name"],
           "artists": [],
-          "album": item["album"]["name"],
-          "coverArt": item["album"]["images"][2]["url"],
+          "album_name": item["album"]["name"],
+          "image": item["album"]["images"][2]["url"],
           "duration_ms": item["duration_ms"],
           "popularity": item["popularity"],
           "preview_url": item["preview_url"],
-          "uri": item["uri"]
+          "spotifyId": item["uri"]
         };
         _.each(item["artists"], function(artist){
           entry["artists"].push(artist["name"]);
@@ -65,14 +65,18 @@ angular.module('djBooth.factories', [])
 // this will be called when a user loads the room and whenever a succesful post request occurs to the db (so 
 // the user can see the updated playlist when after they add somethng to it)
 var getQueue = function($http){
-  return $http({
-    method: 'GET',
-    url: 'OUR DB'
-  })
-  .then(function(resp){
-    return resp.data
-  })
-}
+  // return $http({
+  //   method: 'GET',
+  //   url: 'OUR DB'
+  // })
+  // .then(function(resp){
+  //   return resp.data
+  // })
+  // SAMPLE DATA FOR TESTING
+  return [
+  {'song_name': 'Skin Deep', 'artists': ["Dusky"], 'spotifyId': '75kWsM3OTYyQYiEoWYAzH1'},
+  {'song_name': 'Simple Love', 'artists': ["Julio Bashmore"], 'spotifyId': '4grMB5gbgfMh6kUGmo45yf'}];
+};
 
 // this is the post request for adding songs to our db and essentially the queue this is placeholder code
   var addSong = function(songData){
