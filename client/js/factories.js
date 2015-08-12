@@ -64,10 +64,10 @@ angular.module('djBooth.factories', [])
         // this is our get request for our db for the current playlist in the room
         // this will be called when a user loads the room and whenever a succesful post request occurs to the db (so 
         // the user can see the updated playlist when after they add somethng to it)
-        var getQueue = function() {
+        var getQueue = function(queueName) {
             return $http({
                     method: 'GET',
-                    url: '/api/playlist/test'
+                    url: '/api/playlist/'+queueName
                 })
                 .then(function(resp) {
                     return resp.data
@@ -75,19 +75,34 @@ angular.module('djBooth.factories', [])
         }
 
         // this is the post request for adding songs to our db and essentially the queue this is placeholder code
-        var addSong = function(songData) {
+        var createQueue = function() {
             return $http({
                 method: 'POST',
-                url: '/api/song/upvote',
+                url: '/api/playlist/create',
                 data: {
                     userId: 'test'
                 }
             })
         }
+        var addSong = function(songData){
+            return $http({
+                method: 'POST',
+                url: '/api/playlist/add/' +songData.playlistId + '/' + songData.songId,
+                data: songData
+            })
+        }
+        var removeSong = function(songData){
+            return $http({
+                method: 'POST',
+                url: '/api/playlist/remove/' +songData.playlistId + '/' + songData.songId,
+            })
+        }
 
         return {
             getQueue: getQueue,
-            addSong: addSong
+            createQueue: createQueue,
+            addSong: addSong,
+            removeSong: removeSong
         }
 
     })
@@ -108,10 +123,10 @@ angular.module('djBooth.factories', [])
         }
         var signedIn = function() {
             return: $http({
-                method: 'GET',
-                url: 'api/user/signedin'
-            })
-               .then(function(resp) {
+                    method: 'GET',
+                    url: 'api/user/signedin'
+                })
+                .then(function(resp) {
                     return resp.data
                 })
         }
@@ -124,7 +139,7 @@ angular.module('djBooth.factories', [])
 
 
     })
-    .factory('sognDatabase', function($http) {
+    .factory('songDatabase', function($http) {
         var upVote = function(songId) {
             return $http({
                 method: 'POST',
