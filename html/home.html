@@ -13,7 +13,6 @@
 <script type="text/javascript" src="../JS/app.js"></script>
 <script type="text/javascript" src="../JS/controllers.js"></script>
 <script type="text/javascript" src="../JS/factories.js"></script>
-<script type="text/javascript" src="../JS/directives.js"></script>
 <link rel='stylesheet' type='text/css' href='../bower_components/bootstrap/dist/css/bootstrap.css'>
 
 <head>
@@ -25,18 +24,18 @@
     <div class='container-fluid'>
         <h1>#PartyRoom</h1>
         <div ng-controller='playerController'>
-            <iframe src="https://embed.spotify.com/?uri=spotify:track:{{uri}}" width="300" height="80" id="widget" frameborder="0" allowtransparency="true" onended="playNext()"></iframe>
+            <iframe src="{{uri}}" width="300" height="80" id="widget" frameborder="0" allowtransparency="true"></iframe>
         </div>
         <!-- <form name='searchForm' class='form-inline'>
             <input type='text' class='form-control' ng-model='song' placeHolder='Select a song' update-search="getSong(song)">
         </form>
  -->
         <!-- search field -->
-        <p>selected: {{result.selected.name}}</p>
+        <!-- <p>selected: {{result.selected.song_name}}</p> -->
         <ui-select ng-model='result.selected'  on-select='selectSong(result.selected)'  theme="bootstrap" ng-disabled="false" reset-search-input="false" uiSelectConfig.appendToBody = true; style="width: 300px;">
-            <ui-select-match placeholder="Enter a song...">{{$select.selected.name}}</ui-select-match>
+            <ui-select-match placeholder="Enter a song...">{{$select.selected.song_name}}</ui-select-match>
             <ui-select-choices repeat="result in results |limitTo:10" refresh="getSongs($select.search)" refresh-delay="0">
-                <div ng-bind-html="result.name |highlight: $select.search"></div>
+                <div ng-bind-html="result.song_name + '-' + result.artists[0] |highlight: $select.search"></div>
             </ui-select-choices>
         </ui-select>
 
@@ -49,7 +48,7 @@
                 <!-- 'this is where the playlist is' -->
                 <li ng-repeat="song in playList" class="row-fluid inline ">
                     <p>
-                        <div>{{song.name}} -{{song.artists[0]}} {{song.votes}}
+                        <div>{{song.song_name}} -{{song.artists[0]}} {{song.votes}}
                             <span  ng-click='upVote()'class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                             <span ng-click='downVote()'class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                         </div>
