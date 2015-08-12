@@ -30,13 +30,12 @@ angular.module('djBooth.controllers', [])
 
 
     })
-    .controller('playListController', function($scope, $window, databaseInteraction) {
+    .controller('playListController', function($scope, $window, playlistDatabase) {
         $scope.playList = [];
         $scope.selectSong = function(song) {
             song.votes = 0;
-            console.log(song)
-            databaseInteraction.addSong(song).then(function(data) {
-                    $scope.playList = databaseInteraction.getQueue();
+            playlistDatabase.addSong(song).then(function(data) {
+                    $scope.playList = playlistDatabase.getQueue();
                 })
                 .catch(function(err) {
                     console.error(err)
@@ -51,6 +50,7 @@ angular.module('djBooth.controllers', [])
             console.log('downvote')
         }
     })
+    .controller('signUpController', function($scope, $window, ))
     // this is where the search field updates with data from spotify as you type, obviously this is not implemented and 
     // is placeholder code
 
