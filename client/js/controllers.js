@@ -30,7 +30,7 @@ angular.module('djBooth.controllers', [])
 
 
     })
-    .controller('playListController', function($scope, $window, databaseInteractione) {
+    .controller('playListController', function($scope, $window, databaseInteraction) {
         $scope.playList = [];
         $scope.selectSong = function(song) {
             song.votes = 0;
