@@ -66,28 +66,6 @@ angular.module('djBooth.controllers', ['ngSanitize', 'djBooth.factories'])
         console.log("Empty Queue");
       }
 
-      var count = 0;
-
-      // $scope.refreshQueue = function(){
-      //   count++;
-      //   queue = databaseInteraction.getQueue();
-      //   $scope.uri = "https://embed.spotify.com/?uri=spotify:trackset:JIBE:"
-      //   var tracks = [];
-      //   for (var i = 0; i < queue.length; i++){
-      //     tracks.push(queue[i]["spotifyId"]);
-      //   }
-      //   var trackset = tracks.join(",");
-      //   $scope.uri += trackset;
-      //   if (count > 10){
-      //     $scope.uri += ",3XTsLEA6F9Y6l5n0nblAye";
-      //   }
-      //   console.log("Queue refreshed:", $scope.uri);
-      //   return $scope.uri;
-      // };
-
-      // setInterval($scope.refreshQueue, 5000);
-
-
       $scope.playNext = function(){
         console.log("Song end registered");
         currentSongIdx++;
