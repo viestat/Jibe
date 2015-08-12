@@ -31,8 +31,11 @@ var SongSchema = new Schema({
     downvoteUsers: [{type: Schema.Types.ObjectId, ref: 'User'}] // references User _id
   },
   updated_at: { type: Date },
-  plays: Number
-
+  plays: Number,
+  played: {
+    type: Boolean,
+    default: false
+  }
 });
 
 SongSchema.methods.upvote = function () {
