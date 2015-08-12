@@ -1,10 +1,12 @@
-var express        = require('express'),
-    bodyParser     = require('body-parser'),
-    methodOverride = require('method-override'),
-    mongoose       = require('mongoose');
+var express  = require('express'),
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    morgan   = require('morgan'),
+    configDB = require('./config/database.js');
 
 // connect to mongo database named soundsource
-mongoose.connect('mongodb://127.0.0.1:27017/jibe');
+//mongoose.connect('mongodb://127.0.0.1:27017/jibe');
+mongoose.connect(configDB.url);
 
 mongoose.connection.once('connected', function() {
   console.log('Connected to database!');
@@ -17,6 +19,7 @@ var app = express();
 
 // configure our server with all the middleware and and routing
 require('./config/middleware.js')(app, express);
+require('./config/passport')(passport); // pass passport for configuration
 
 //========================
 // start app
