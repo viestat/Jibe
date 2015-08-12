@@ -1,6 +1,19 @@
 var jwt  = require('jwt-simple');
 
 module.exports = {
+
+  sendResponse: function(res, data, statusCode) {
+    var headers = {
+      'access-control-allow-orgin': '*',
+      'access-control-allow-methods' : 'GET, POST, PUT, DELETE, OPTIONS',
+      'access-control-allow-headers': 'content-type, accept',
+      'Content-Type': 'text/html'
+    };
+    statusCode = statusCode || 200;
+    res.writeHead(statusCode, headers);
+    res.json(data);
+  },
+
   errorLogger: function (error, req, res, next) {
     // log the error then send it to the next middleware in middleware.js
     console.error(error.stack);
