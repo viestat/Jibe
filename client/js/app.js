@@ -10,7 +10,7 @@ angular.module('djBooth', [
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/host/*', {
-      templateUrl: '../HTML/home.html',
+      templateUrl: '../HTML/host.html',
       controller: 'searchController'
     })
     .when('/guest/*', {
@@ -23,7 +23,7 @@ angular.module('djBooth', [
 
     })
     .otherwise({
-      redirectTo:'/signin'
+      redirectTo:'/host'
     })
 
 })
