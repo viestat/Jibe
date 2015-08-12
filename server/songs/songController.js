@@ -1,5 +1,6 @@
-var Song = require('./songModel'),
-    Q    = require('q');
+var Song     = require('./songModel'),
+    Q        = require('q'),
+    sendResp = require('../config/helpers').sendResponse;
 
 module.exports = {
 
@@ -20,7 +21,7 @@ module.exports = {
       if (err) {
         next(err);
       } else {
-        res.json(song);
+        sendResp(res, song);
       }
     });
   },
@@ -44,7 +45,7 @@ module.exports = {
         } else {
           song.meta.upvoteUsers.push(userId);
           song.upvote().then(function (song) {
-            res.json({upvotes: song.meta.upvotes});
+            sendResp(res, {upvotes: song.meta.upvotes});
           }, function() {
             next(new Error('Upvote error: upvoted song was not saved.'));
           });
@@ -74,7 +75,7 @@ module.exports = {
         } else {
           song.meta.downvoteUsers.push(userId);
           song.downvote().then(function (song) {
-            res.json({downvotes: song.meta.downvotes});
+            sendResp(res, {downvotes: song.meta.downvotes});
           }, function() {
             next(new Error('Downvote error: upvoted song was not saved.'));
           });

@@ -1,6 +1,7 @@
-var User = require('./userModel'),
-    Q    = require('q'),
-    jwt  = require('jwt-simple');
+var User     = require('./userModel'),
+    Q        = require('q'),
+    jwt      = require('jwt-simple'),
+    sendResp = require('helpers').sendResponse;
 
 module.exports = {
   signin: function (req, res, next) {
@@ -17,7 +18,7 @@ module.exports = {
             .then(function(foundUser) {
               if (foundUser) {
                 var token = jwt.encode(user, 'secret');
-                res.json({token: token});
+                sendResp(res, {token: token});
               } else {
                 return next(new Error('No user'));
               }
@@ -55,7 +56,7 @@ module.exports = {
       .then(function (user) {
         // create token to send back for auth
         var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+        sendResp(res, {token: token});
       })
       .fail(function (error) {
         next(error);

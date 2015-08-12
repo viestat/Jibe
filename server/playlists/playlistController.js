@@ -1,6 +1,7 @@
 var Playlist       = require('./playlistModel'),
     SongController = require('../songs/songController'),
-    Q              = require('q');
+    Q              = require('q'),
+    sendResp       = require('helpers').sendResponse;
 
 module.exports = {
 
@@ -10,7 +11,7 @@ module.exports = {
       .populate('playedSongs')
       .exec(function(err, results) {
         if (err) next(err);
-        res.json({playlist: results}); // TODO: send the right data back; inspect these results
+        sendResp(res, {playlist: results}); // TODO: send the right data back; inspect these results
       });
   },
 
@@ -20,7 +21,7 @@ module.exports = {
       if (err) {
         next(err);
       } else {
-        res.json({'playlistId': playlist._id});
+        sendResp(res, {'playlistId': playlist._id});
       }
     });
   },
@@ -66,7 +67,7 @@ module.exports = {
         } else {
           console.log('SUCCESS: song added to playlist.');
           req.playlist.songs.push();
-          res.json(song);
+          sendResp(res, song);
         }
       });
     }
@@ -89,6 +90,6 @@ module.exports = {
       req.playlist.playedSongs.push({_id: req.body._id});
     }
     req.playlist.songs.pull({_id: req.body._id});
-    res.json({_id: req.body._id});
+    sendResp(res, {_id: req.body._id});
   }
 };
