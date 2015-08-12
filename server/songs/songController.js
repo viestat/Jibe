@@ -3,16 +3,17 @@ var Song = require('./songModel'),
 
 module.exports = {
 
-  add: function(req, res, next) {
-    var song = new Song(req.body);
-    song.save(function(err, song) {
-      if (err) {
-        next(err);
-      } else {
-        res.json(song);
-      }
-    });
-  },
+  // SONG ADDED TO DB USING PLAYLIST CONTROLLER
+  // add: function(req, res, next) {
+  //   var song = new Song(req.body);
+  //   song.save(function(err, song) {
+  //     if (err) {
+  //       next(err);
+  //     } else {
+  //       res.json(song);
+  //     }
+  //   });
+  // },
 
   remove: function(req, res, next) {
     Song.findByIdAndRemove(req.params.id, function (err, song) {
