@@ -34,11 +34,25 @@ module.exports = {
   },
 
   hasSong: function(req, res, next, spotifyId) {
+    // call hasSong method on playlist Schema
     req.hasSong = req.playlist.hasSong(spotifyId);
   },
 
   addSong: function(req, res, next) {
-
+    if (req.hasSong) {
+      throw new Error('Playlist Error: song already in playlist.');
+    } else {
+      var song = new Song(req.body);
+      song.save(function(err, song) {
+        if (err) {
+          next(err);
+        } else {
+          console.log('Playlist SUCCESS: song added to playlist.');
+          req.playlist.songs.push();
+          res.json(song);
+        }
+      });
+    }
   },
 
   removeSong: function(req, res, next) {
