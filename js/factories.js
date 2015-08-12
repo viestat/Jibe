@@ -107,6 +107,8 @@ angular.module('djBooth.factories', [])
   }
 
 })
+
+
 // This factory will handle playlist creation, adding songs, and reordering them
 .factory('spotifyPlaylistMgr', function($http, databaseInteraction){
   
@@ -124,6 +126,7 @@ angular.module('djBooth.factories', [])
   // auth token (all permissions) from Robby's spotify for testing purposes
   var myToken = 'BQC6DciJdcfuCjygLrrIc1gttp6fwEK14QGa6AHf1oAbQCkoNi5-FFoQ1Hz8PAQkKVDIK3J0rCjs4Wh7m8rz6nvuMrBJOUrXy40Ul6oDglMuRA33OTN4_H_yvJdacCaYLDSZsre8Roa7ylMWJdrIrRStCxQDsfx0m0qS5EX3saZnD38qPyEj9-9nE13uxOXP8fI_noDWy0ZkiOfkM2PiuW8GIDNmuPJykA2hp3akXvEtGMa8c7PUSj6ff734nhR5s3wrmwXuMyhqER2X9VB60916lSf3kIQF3JreyrM_sUZdTg';
   
+
   // This function checks to see if playlist for room ID exists yet,
   // and initializes new playlist if it does not
   var checkForPlaylist = function($http){
@@ -143,6 +146,7 @@ angular.module('djBooth.factories', [])
     })
   };
 
+
   // This function initializes a new playlist
   var initializePlaylist = function($http){
     return $http({
@@ -151,7 +155,7 @@ angular.module('djBooth.factories', [])
       Accept: 'application/json',
       Authorization: 'Bearer ' + userToken,
       data: {
-        'name': 'JibeTestPlaylist1',
+        'name': eventName,
         'public': 'true'
       }
     })
@@ -161,7 +165,26 @@ angular.module('djBooth.factories', [])
     })
   };
 
+
+  // This function adds a new song to the playlist
+  var addSongToSpotifyPlaylist = function($http, song){
+    var songUri = playlistUri + '/tracks?uris=spotify%3Atrack%3A' + song.spotifyId;    
+    return $http({
+      method: 'POST',
+      url: songUri,
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + userToken,
+    })
+    .then(function(resp){
+      console.log("Song: " + song.song_name + " added to playlist: " + eventName);
+      return resp.data;
+    })
+  };
+
+
   return {
-    initializePlaylist: initializePlaylist
+    checkForPlaylist: checkForPlaylist,
+    initializePlaylist: initializePlaylist,
+    addSongToSpotifyPlaylist: addSongToSpotifyPlaylist
   }
 })
