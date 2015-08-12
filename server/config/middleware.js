@@ -5,7 +5,6 @@ var morgan        = require('morgan'), // used for logging incoming request
     session       = require('express-session'),
     flash         = require('connect-flash'),
     passport      = require('passport');
-// TODO: will need to change much of the authentication and helpers.decode which uses jwt
 
 module.exports = function (app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
