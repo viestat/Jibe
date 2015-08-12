@@ -36,7 +36,6 @@ var PlaylistSchema = new Schema({
 
 
 PlaylistSchema.methods.hasSong = function (songId) {
-
   var promise = this.populate('songs.song').exec(function(err, songs) {
     if (err) throw new Error('Playlist Error: could not check if song in playlist.');
     return songs.some(function(song) {
@@ -47,7 +46,6 @@ PlaylistSchema.methods.hasSong = function (songId) {
 };
 
 PlaylistSchema.methods.hasPlayed = function(songId) {
-
   var promise = this.populate('playedSongs.song').exec(function(err, songs) {
     if (err) throw new Error('Playlist Error: could not check if song was played for playlist.');
     return songs.some(function(song) {

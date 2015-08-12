@@ -4,6 +4,16 @@ var Playlist       = require('./playlistModel'),
 
 module.exports = {
 
+  getPlaylist: function(req, res, next) {
+    req.playlist
+      .populate('songs')
+      .populate('playedSongs')
+      .exec(function(err, results) {
+        if (err) next(err);
+        res.json({playlist: results}); // TODO: send the right data back; inspect these results
+      });
+  },
+
   createPlaylist: function(req, res, next) {
     var playlist = new Playlist({'_creator': req.body.userId});
     playlist.save(function(err, playlist) {
@@ -26,6 +36,7 @@ module.exports = {
           next(new Error('Playlist Error: playlist not found in database.'));
         } else {
           req.playlist = playlist;
+          next();
         }
       })
       .fail(function (error) {
@@ -33,9 +44,15 @@ module.exports = {
       });
   },
 
-  hasSong: function(req, res, next, spotifyId) {
-    // call hasSong method on playlist Schema
-    req.hasSong = req.playlist.hasSong(spotifyId);
+  hasSong: function(req, res, next, songId) {
+    // call hasSong method on PlaylistSchema which return a promise
+    req.playlist.hasSong(songId).then(function(isInPlaylist) {
+      req.hasSong = isInPlaylist;
+      req.songId = songId;
+      next();
+    }, function(err) {
+      next(err);
+    });
   },
 
   addSong: function(req, res, next) {
@@ -47,7 +64,7 @@ module.exports = {
         if (err) {
           next(err);
         } else {
-          console.log('Playlist SUCCESS: song added to playlist.');
+          console.log('SUCCESS: song added to playlist.');
           req.playlist.songs.push();
           res.json(song);
         }
@@ -55,7 +72,23 @@ module.exports = {
     }
   },
 
-  removeSong: function(req, res, next) {
+  hasPlayed: function(req, res, next) {
+    // call hasPlayed method on PlaylistSchema which return a promise
+    if (req.hasSong) {
+      req.playlist.hasPlayed(req.songId).then(function(played) {
+        req.hasPlayed = played;
+        next();
+      }, function(err) {
+        next(err);
+      });
+    } else throw new Error('Playlist Error on hasPlayed: song not in playlist.');
+  },
 
+  removeSong: function(req, res, next) {
+    if (req.body.played) {
+      req.playlist.playedSongs.push({_id: req.body._id});
+    }
+    req.playlist.songs.pull({_id: req.body._id});
+    res.json({_id: req.body._id});
   }
 };
