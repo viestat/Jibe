@@ -1,11 +1,19 @@
-<!-- views/profile.ejs -->
+<!-- html/profile.ejs -->
 <!doctype html>
 <html>
-<head>
+<head ng-app='djBooth'>
     <title>Jibe</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
+    <script src='../lib/angular/angular.js'></script>
+    <script src="../lib/angular-route/angular-route.js"></script>
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <script src="../lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../lib/underscore/underscore.js"></script>
+    <script type="text/javascript" src="../JS/app.js"></script>
+    <script type="text/javascript" src="../JS/controllers.js"></script>
+    <script type="text/javascript" src="../JS/factories.js"></script>
     <style>
         body        { padding-top:80px; word-wrap:break-word; }
     </style>
@@ -13,9 +21,11 @@
 <body>
 <div class="container">
 
-    <div class="page-header text-center">
+    <div ng-controller="playListController" class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Jibe </h1>
-        <a href="/logout" class="btn btn-default btn-sm"> Logout </a>
+        <a href='/host' class="btn btn-default btn-sm">Create Room</a>
+        <a ng-click='upvote()' class="btn btn-default btn-sm"> Logout </a>
+
     </div>
 
     <div class="row">

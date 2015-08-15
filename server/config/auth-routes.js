@@ -4,6 +4,9 @@ module.exports = function(app, passport) {
     app.get('/', function(req, res) {
         res.render('../views/index.ejs'); // load the index.ejs file
     });
+       app.get('/host', function(req, res) {
+        res.render('../views/client/html/host.html'); // load the index.ejs file
+    });
 
     // route for login form
     // route for processing the login form
