@@ -1,4 +1,3 @@
-var spotify = require('spotify-node-applescript');
 angular.module('djBooth.factories', [])
 .factory('searchSpotify', function ($http){
   // this is our factory function for getting data from spotify, this will be run when we type in the search field
@@ -182,18 +181,13 @@ angular.module('djBooth.factories', [])
     })
   };
 
-  // use spotify-node-applescript to get host's current song
-  var getCurrentPlayingSong = function($http){
-    var currentTrack;
-    spotify.getTrack(function(err, track){
-      currentTrack = track;
-      console.log(currentTrack);
-    });
-    var currentId = currentTrack.id;
+  var updatePlayedSongs = function($http){
+    var current = getPlaying();
+    var currentId = current.id;
     // query our db for played songs to see if current is there already
     return $http({
       method: 'GET',
-      
+
     })
       // if not, add to played songs and delete from songs
     return currentTrack;
@@ -210,15 +204,19 @@ angular.module('djBooth.factories', [])
 
     // next up idx in spotify master = played.length
     var nextIdx = dbPlayed.length;
-    // slice database playlist after current song index 
+    // temp associate each remaining song with its current
+    // absolute index in the spotify playlist 
     _.each(dbSongs, function(song, idx){
-      song.meta['idx'] = ;
-    })
+      song.meta['idx'] = nextIdx + idx;
+    });
 
+    // sort remaining songs by votes and log a history
+    // of the steps and idx's that will dictate put requests
+    // to spotify
     var historyLog = [];
-    unplayedSongs.sort(function(a,b){
+    dbSongs.sort(function(a,b){
       if ((a.meta.upvotes - a.meta.downvotes) < (b.meta.upvotes - b.meta.downvotes)){
-        historyLog.push(["A",a.meta.idx,b.meta.idx);
+        historyLog.push(["A",a.meta.idx,b.meta.idx]);
         return 1;
       } else if ((a.meta.upvotes - a.meta.downvotes) === (b.meta.upvotes - b.meta.downvotes)){
         historyLog.push("B");
