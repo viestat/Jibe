@@ -136,7 +136,7 @@ angular.module('djBooth.factories', [])
       method: 'GET',
       url: playlistUri,
       Accept: 'application/json',
-      Authorization: 'Bearer ' + userToken;
+      Authorization: 'Bearer ' + userToken
     })
     .then(function(resp){
       if (resp.data.hasOwnProperty("error") && resp.data["error"]["status"] === 404){
@@ -167,13 +167,13 @@ angular.module('djBooth.factories', [])
 
 
   // This function adds a new song to the playlist
-  var addSongToSpotifyPlaylist = function($http, song){
-    var songUri = playlistUri + '/tracks?uris=spotify%3Atrack%3A' + song.spotifyId;    
+  var addSongToSpotifyPlaylist = function(song, $http){
+    var songUri = playlistUri + '/tracks?uris=' + song.spotifyId;    
     return $http({
       method: 'POST',
       url: songUri,
       Accept: 'application/json',
-      Authorization: 'Bearer ' + userToken,
+      Authorization: 'Bearer ' + userToken
     })
     .then(function(resp){
       console.log("Song: " + song.song_name + " added to playlist: " + eventName);
@@ -182,9 +182,71 @@ angular.module('djBooth.factories', [])
   };
 
 
+  var getCurrentPlayingSong = function($http){
+    return $http({
+      method: 'GET',
+      url: '/api/current'
+    })
+    .then(function(resp){
+      console.log("Current Song Spotify Uri: ", resp.data);
+      return resp.data;
+    })
+  };
+  // This function handles the playlist reordering as votes change
+    // Onclick event of upvote or downvote button by any user
+    // will trigger this function
+  var updatePlaylist = function ($http, songDatabase){
+    // retrieve playlist from database to access voting metadata
+    var dbPlaylist = databaseInteraction.getQueue();
+    // query our server to get the current playing song
+    var currentUri = getCurrentPlayingSong();
+    var currentIdx;
+
+    // use current uri to determine current idx in playlist
+    _.each(dbPlaylist, function(song, idx){
+      if (song['spotifyId'] === currentUri){
+        currentIdx = idx;
+      }
+    });
+    // slice database playlist after current song index
+    var unplayedSongs = dbPlaylist.slice(currentIdx+1);
+    var historyLog = [];
+    unplayedSongs.sort(function(a,b){
+      if ((a.meta.upvotes - a.meta.downvotes) < (b.meta.upvotes - b.meta.downvotes)){
+        historyLog.push("A");
+        return 1;
+      } else if ((a.meta.upvotes - a.meta.downvotes) === (b.meta.upvotes - b.meta.downvotes)){
+        historyLog.push("B");
+        return 0;
+      } else {
+        historyLog.push("C");
+      }
+    });
+    // sort sliced playlist by votes (up - down) in descending order
+    // update spotify playlist accordingly (as moves are made?)
+  };
+
+// [4,5,8,6] // is 4 < 5 --> y,A  {1,1,0}  {idx+1,1,idx}
+
+// [5,4,8,6] // is 4 < 8 --> y,A  {2,1,1}  {idx+1,1,idx}
+// [5,8,4,6] // is 4 < 6 --> y,A  {3,1,2}  {idx+1,1,idx}
+// [5,8,6,4] // is 5 < 8 --> y,A  {1,1,0}  {idx+1,1,idx}
+// [8,5,6,4] // is 5 < 6 --> y,A  {2,1,1}  {idx+1,1,idx}
+// [8,6,5,4] // sorted
+
+
+// [4,5,5,8] A {1,1,0} {idx+1,1,idx}
+
+// [5,4,5,8] A {2,1,1} {idx+1,1,idx}
+// [5,5,4,8] A {3,1,2} {idx+1,1,idx}
+// [5,5,8,4] B {2,1,0} {idx+2,1,idx}
+// [8,5,5,4] sorted
+
   return {
     checkForPlaylist: checkForPlaylist,
     initializePlaylist: initializePlaylist,
-    addSongToSpotifyPlaylist: addSongToSpotifyPlaylist
+    addSongToSpotifyPlaylist: addSongToSpotifyPlaylist,
+    getCurrentPlayingSong: getCurrentPlayingSong,
+    updatePlaylist: updatePlaylist
   }
 })
