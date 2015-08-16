@@ -1,3 +1,4 @@
+var spotify = require('spotify-node-applescript');
 angular.module('djBooth.factories', [])
 .factory('searchSpotify', function ($http){
   // this is our factory function for getting data from spotify, this will be run when we type in the search field
@@ -181,39 +182,43 @@ angular.module('djBooth.factories', [])
     })
   };
 
-
+  // use spotify-node-applescript to get host's current song
   var getCurrentPlayingSong = function($http){
+    var currentTrack;
+    spotify.getTrack(function(err, track){
+      currentTrack = track;
+      console.log(currentTrack);
+    });
+    var currentId = currentTrack.id;
+    // query our db for played songs to see if current is there already
     return $http({
       method: 'GET',
-      url: '/api/current'
+      
     })
-    .then(function(resp){
-      console.log("Current Song Spotify Uri: ", resp.data);
-      return resp.data;
-    })
+      // if not, add to played songs and delete from songs
+    return currentTrack;
   };
   // This function handles the playlist reordering as votes change
     // Onclick event of upvote or downvote button by any user
     // will trigger this function
   var updatePlaylist = function ($http, songDatabase){
     // retrieve playlist from database to access voting metadata
-    var dbPlaylist = databaseInteraction.getQueue();
+    var dbSongs = databaseInteraction.getSongs();
+    var dbPlayed = databaseInteraction.getPlayed();
     // query our server to get the current playing song
-    var currentUri = getCurrentPlayingSong();
-    var currentIdx;
+    var currentUri = getCurrentPlayingSong().id;
 
-    // use current uri to determine current idx in playlist
-    _.each(dbPlaylist, function(song, idx){
-      if (song['spotifyId'] === currentUri){
-        currentIdx = idx;
-      }
-    });
-    // slice database playlist after current song index
-    var unplayedSongs = dbPlaylist.slice(currentIdx+1);
+    // next up idx in spotify master = played.length
+    var nextIdx = dbPlayed.length;
+    // slice database playlist after current song index 
+    _.each(dbSongs, function(song, idx){
+      song.meta['idx'] = ;
+    })
+
     var historyLog = [];
     unplayedSongs.sort(function(a,b){
       if ((a.meta.upvotes - a.meta.downvotes) < (b.meta.upvotes - b.meta.downvotes)){
-        historyLog.push("A");
+        historyLog.push(["A",a.meta.idx,b.meta.idx);
         return 1;
       } else if ((a.meta.upvotes - a.meta.downvotes) === (b.meta.upvotes - b.meta.downvotes)){
         historyLog.push("B");
