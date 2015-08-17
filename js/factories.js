@@ -61,38 +61,22 @@ angular.module('djBooth.factories', [])
 })
 .factory('databaseInteraction', function($http){
 
-  // GET request for retrieving host's eventId and 
-  // var getIdentifiers = function(data){
-    
-  //   return $http({
-  //     method: 'GET',
-  //     url: 'OUR DB'
-  //   })
-  //   .then(function(resp){
-  //     return {
-  //       userSpotifyId: resp.data.userSpotifyId,
-  //       eventId: resp.data._id,
-  //       eventName: resp.data.eventName,
-  //       userToken: resp.data.userToken
-  //     };
-  //   })
-  // };
-  // this is our get request for our db for the current playlist in the room
-  var getPlaylist = function(playlist){
-    var uri = '/' + playlist._id;
+  // this is our get request to our db for the event's playlist
+  var getPlaylist = function(playlistId){
+    var uri = '/' + playlistId;
     return $http({
       method: 'GET',
       url: uri
     })
     .then(function(resp){
-      console.log("Got playlist: ", resp.data);
+      console.log("Got playlist data: ", resp.data);
       return resp.data.songs;
     })
   };
 
-  // this is the post request for adding songs to our db and essentially the queue this is placeholder code
-  var addSong = function(playlist, song){
-    var uri = '/add/' + playlist._id + '/' + song.uri;
+  // this is the post request for adding songs to our db
+  var addSong = function(playlistId, song){
+    var uri = '/add/' + playlistId + '/' + song.uri;
     return $http({
       method: 'POST',
       url: uri,
@@ -100,11 +84,12 @@ angular.module('djBooth.factories', [])
     })
   };
 
-
-  var getNext = function(playlist){
-    var songs = getPlaylist();
+  // this function retrieve the next song in the db and
+  // then removes from songs --> sends to played
+  var getNext = function(playlistId){
+    var songs = getPlaylist(playlistId);
     var nextUri = songs[0].uri;
-    var uri = '/remove/' + playlist._id + '/' + nextUri;
+    var uri = '/remove/' + playlistId + '/' + nextUri;
     return $http({
       method: 'POST',
       url: uri

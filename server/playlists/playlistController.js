@@ -89,7 +89,7 @@ module.exports = {
     if (req.body.played) {
       req.playlist.playedSongs.push({_id: req.body._id});
     }
-    var nextSong = req.playlist.songs.shift();
-    sendResp(res, nextSong);
+    req.playlist.songs.pull({_id: req.body._id});
+    sendResp(res, {_id: req.body._id});
   }
 };
