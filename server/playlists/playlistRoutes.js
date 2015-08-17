@@ -7,6 +7,7 @@ module.exports = function (app) {
   app.param('songId', playlistController.hasSong);
 
   app.get('/:playlist', playlistController.getPlaylist);
+  app.get('/:playlist', playlistController.getPlaylist);
 
   app.post('/create', playlistController.createPlaylist);
 

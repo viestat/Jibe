@@ -1,3 +1,5 @@
+var PlaylistCtrl = require('../playlists/playlistController');
+
 module.exports = function(app, passport) {
 
     // route for home page
@@ -25,10 +27,8 @@ module.exports = function(app, passport) {
             user : req.user // get the user out of session and pass to template
         });
     });
-
     app.get('/host', isLoggedIn, PlaylistCtrl.createPlaylist, function(req, res) {
         res.redirect(301, '/#/host/' + req.playlistId);
-
     });
 
     // =====================================

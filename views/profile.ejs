@@ -13,8 +13,9 @@
 <body>
 <div class="container">
 
-    <div class="page-header text-center">
+    <div ng-controller='playListController' class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Jibe </h1>
+        <a ng-click='newQueue("<%= user._id %>")' class="btn btn-default btn-sm">Create Room</a>
         <a href="/logout" class="btn btn-default btn-sm"> Logout </a>
     </div>
 
