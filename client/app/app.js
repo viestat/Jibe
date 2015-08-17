@@ -11,19 +11,6 @@ angular.module('jibe', [
 
   $urlRouterProvider.otherwise('/home');
 
-  // var authenticated = ['$q', 'AuthFactory', function ($q, AuthFactory) {
-  //   var deferred = $q.defer();
-  //   AuthFactory.isLoggedIn(false)
-  //     .then(function(isLoggedIn) {
-  //       if (isLoggedIn) {
-  //         deferred.resolve();
-  //       } else {
-  //         deferred.reject('Not logged in.');
-  //       }
-  //     });
-  //   return deferred.promise;
-  // }];
-
   $stateProvider
     .state('home', {
       templateUrl: 'app/home/home.html',
@@ -46,9 +33,3 @@ angular.module('jibe', [
       templateUrl: 'app/playlist/playlist-search.html',
     });
 });
-// .run(function ($rootScope, $state) {
-//   // Redirect to login if route requires auth and you're not logged in
-//   $rootScope.$on('$stateChangeError', function (err, req) {
-//     $state.go('login');
-//   });
-// });
