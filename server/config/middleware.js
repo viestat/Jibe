@@ -8,7 +8,6 @@ var morgan        = require('morgan'), // used for logging incoming request
 
 module.exports = function (app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
-  var userRouter = express.Router();
   var songRouter = express.Router();
   var playlistRouter = express.Router();
 
@@ -23,13 +22,9 @@ module.exports = function (app, express) {
   app.use(passport.session()); // persistent login sessions
   app.use(flash()); // use connect-flash for flash messages stored in session
 
-
-  // TODO: CHANGE DIR TO SERVE UP PUBLIC FILES
   app.use(express.static(__dirname + '/../../client'));
 
-  app.use('/api/user', userRouter); // use user router for all user requests
 
-  app.use('/api/playlist', helpers.decode); // authentication middleware used to decode token
   app.use('/api/playlist', playlistRouter); // use playlist router for all playlist requests
 
   app.use('/api/song', helpers.decode);
@@ -39,7 +34,6 @@ module.exports = function (app, express) {
   app.use(helpers.errorHandler);
 
   // inject our routers into their respective route files
-  require('../users/userRoutes')(userRouter);
   require('../songs/songRoutes')(songRouter);
   require('../playlists/playlistRoutes')(playlistRouter);
   require('./auth-routes')(app, passport);

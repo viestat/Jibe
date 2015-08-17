@@ -17,7 +17,7 @@ var Schema = mongoose.Schema;
 //===========================
 var SongSchema = new Schema({
   spotifyId: {type: String, required: true},
-  artist: {type: String, required: true},
+  artist: [{type: String, required: true}],
   song_name: {type: String, required: true},
   album_name:  String,
   duration_ms: Number,
