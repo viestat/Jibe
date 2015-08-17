@@ -1,5 +1,56 @@
+<div id="overlay-source-search" class="overlay">
+
+   <a href="#" id='search-close' class="collapse-button">
+        <i class="fa fa-minus"></i>
+    </a>
+
+   <div id="source-name">YouTube</div>
+
+   <div id="search-form">
+       <input type="text" class="input_text light" placeholder="Search Now">
+       <input type="submit" class="input_submit dark-button black" value="GO">
+   </div>
+
+   <div class="overlay-content">
+       <div class="song-container clearfix">
+           <img class="small-artwork" src="assets/img/now-playing-img.jpg">
+           <div class="song-info">
+               <div class="song-name light medium">Haunted By a really long song name</div>
+               <div class="artist-name light small">Beyonce and the super groovy chicks</div>
+           </div>
+           <a href="" class="add-button dark-button black">
+               Add
+           </a>
+
+       </div>
+
+       <div class="song-container clearfix">
+           <img class="small-artwork" src="assets/img/now-playing-img.jpg">
+           <div class="song-info">
+               <div class="song-name light medium">Haunted</div>
+               <div class="artist-name light small">Beyonce</div>
+           </div>
+           <a href="" class="add-button dark-button">
+               Add
+           </a>
+       </div>
+
+       <div class="song-container clearfix">
+           <img class="small-artwork" src="assets/img/now-playing-img.jpg">
+           <div class="song-info">
+               <div class="song-name light medium">Haunted</div>
+               <div class="artist-name light small">Beyonce</div>
+           </div>
+           <a href="" class="add-button dark-button">
+               Add
+           </a>
+       </div>
+   </div>
+
+</div>
+
 <div id="overlay-share" class="overlay">
-    <a href="#" class="collapse-button" id="share-close">
+    <a class="collapse-button" id="share-close">
         <i class="fa fa-minus"></i>
     </a>
 
@@ -16,7 +67,8 @@
     <a href="/logout"><div class="nav-toggle"><i class="fa fa-sign-out"></i></div></a>
 </div>
 
-<div class="current-playlist-container" ng-controller='PlaylistCtrl'>
+<!-- ng-controller='PlaylistCtrl' -->
+<div class="current-playlist-container">
     <p class="current-playlist-header black">Current Playlist</p>
     <p class="current-playlist-name light">{{ playlistName }}</p>
 </div>
@@ -24,56 +76,12 @@
     <div class="link-input">
         <input class="link-url light medium" type="text" class="form-control" value={{playlistLink}}>
     </div>
-<div class="current-playlist-buttons" ng-controller='MyCtrl'>
-    <a ng-click='toggleModal()' href="#"><div class="nominate-button normal dark-button">Nominate a Song</div></a>
-        <a href="#" class="share-button normal dark-button" id="share-open">Share</a>
 
-
-    <modal-dialog show='modalShown' width='100%' height='100%'>
-        <!-- START-->
- <div class="search-header">
-        <span class="search-header-title thin dark-purple-text">Spotify</span>
-    </div>
-    <div class="input-group">
-        <input id="filter" class="light large" type="text" class="form-control" placeholder="Search now">
-        <span class="go-button black medium">Go</span>
-    </div>
-    <table class="table table-striped" width="100%">
-        <tbody class="searchable">
-            <tr class="search-result-row">
-                <td width="7%">
-                </td>
-                <td width="20%">
-                    <img class="search-result-artwork" src="assets/img/expanded-artwork-img.jpg">
-                </td>
-
-                <td width="53%">
-                    <div class="light large">Haunted</div>
-        <div class="light medium">Beyonce</div>
-                </td>
-
-                <td width="20%" class="add-button-cell"> <div class="add-button black medium">Add</div> </td>
-            </tr>
-
-
-            <tr class="search-result-row">
-                <td width="7%">
-                </td>
-                <td width="20%">
-                    <img class="search-result-artwork" src="assets/img/expanded-artwork-img.jpg">
-                </td>
-
-                <td width="53%">
-                    <div class="light large">Hang With Me</div>
-        <div class="light medium">Robyn</div>
-                </td>
-
-                <td width="20%" class="add-button-cell"> <div class="add-button black medium">Add</div> </td>
-            </tr>
-        </tbody>
-    </table>
-        <!---END---->
-</modal-dialog>
+<!-- ng-controller='HostCtrl' -->
+<div class="current-playlist-buttons">
+    <!-- ng-click='toggleModal()' -->
+    <a><div class="nominate-button normal dark-button" id="search-open">Nominate a Song</div></a>
+    <a><div class="share-button normal dark-button" id="share-open">Share</div></a>
 </div>
 
 
@@ -82,7 +90,8 @@
     <span class="now-playing-title black">Now Playing</span>
 </div>
 
-<div class="now-playing-container" ng-controller='PlaylistCtrl'>
+<!-- ng-controller='PlaylistCtrl' -->
+<div class="now-playing-container">
     <img class="now-playing-img" src="{{currentSong.artwork}}">
     <div class="now-playing-info">
         <div class="now-playing-song light">{{currentSong.name}}</div>
@@ -106,11 +115,12 @@
 <div class="next-up-header black clearfix">
     <span>Next Up</span>
 </div>
-<div ng-controller="PlaylistCtrl">
+<!-- ng-controller="PlaylistCtrl" -->
+<div>
     <div ng-repeat="(i, song) in queue">
 
         <div class="song-collapsed-container clearfix" collapse="song.isCollapsed">
-            <a href="#" class="expand-button" ng-click="song.isCollapsed = !song.isCollapsed">
+            <a class="expand-button" ng-click="song.isCollapsed = !song.isCollapsed">
                 <i class="fa fa-plus"></i>
             </a>
             <img class="small-artwork" src="{{song.artwork}}">
@@ -128,7 +138,7 @@
 
 
         <div class="song-expanded-container clearfix" collapse="song.isCollapsed" ng-show="!song.isCollapsed">
-            <a href="#" class="collapse-button" ng-click="song.isCollapsed = !song.isCollapsed">
+            <a class="collapse-button" ng-click="song.isCollapsed = !song.isCollapsed">
                 <i class="fa fa-minus"></i>
             </a>
             <img class="large-artwork" src="{{song.artwork}}">
@@ -179,12 +189,24 @@
 <script>
 $(document).ready(function () {
 
-    $("#share-open").click(function(){
+    $("#share-open").click(function(event){
+        event.preventDefault();
         $('#overlay-share').css('visibility','visible');
     });
 
-    $("#share-close").click(function(){
+    $("#share-close").click(function(event){
+        event.preventDefault();
         $('#overlay-share').css('visibility','hidden');
+    });
+
+    $("#search-open").click(function(event){
+        event.preventDefault();
+        $('#overlay-source-search').css('visibility','visible');
+    });
+
+    $("#search-close").click(function(event){
+        event.preventDefault();
+        $('#overlay-source-search').css('visibility','hidden');
     });
 
     (function ($) {
