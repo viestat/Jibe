@@ -55,24 +55,14 @@ angular.module('djBooth.controllers', ['ngSanitize', 'djBooth.factories'])
     // This controller manages the spotify player widget (playing next song in queue)
     .controller('playerController', function($scope, $window, databaseInteraction){
       // retrieve the queue, which will be an array of objects
-      var queue = databaseInteraction.getQueue();
-
-      var currentSongIdx = 0;
+      var nextSong = databaseInteraction.getNext();
       
-      // grab uri of first song in queue
-      if (queue.length > 0){
-        $scope.uri = "https://embed.spotify.com/?uri=spotify:track:" + queue[0]["spotifyId"];
-      } else {
-        console.log("Empty Queue");
-      }
+
+      $scope.uri = nextSong
 
       $scope.playNext = function(){
-        console.log("Song end registered");
-        currentSongIdx++;
-        $scope.uri = "https://embed.spotify.com/?uri=spotify:track:" + queue[currentSongIdx]["spotifyId"];
-        $("#widget").contents().find("div.play-pause-btn").click();
-      };
-
+        
+      }
 
     })
 
