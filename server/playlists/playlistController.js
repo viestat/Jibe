@@ -16,13 +16,13 @@ module.exports = {
   },
 
   createPlaylist: function(req, res, next) {
-
-    var playlist = new Playlist(req.body);
-    playlist.save(function(err, playlist) {
+    var playlist = new Playlist({'_creator': req.user._id});
+    playlist.save(function(err, list) {
       if (err) {
         next(err);
       } else {
-        sendResp(res, playlist._id);
+        req.playlistId = list._id;
+        next();
       }
     });
   },
@@ -44,6 +44,10 @@ module.exports = {
       .fail(function (error) {
         next(error);
       });
+  },
+
+  getCurrentSong: function(req, res, next) {
+
   },
 
   hasSong: function(req, res, next, songId) {

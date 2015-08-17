@@ -5,7 +5,7 @@
     <title>Jibe</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <style>
         body        { padding-top:80px; word-wrap:break-word; }
     </style>
@@ -13,8 +13,9 @@
 <body>
 <div class="container">
 
-    <div class="page-header text-center">
+    <div ng-controller='playListController' class="page-header text-center">
         <h1><span class="fa fa-anchor"></span> Jibe </h1>
+        <a ng-click='newQueue("<%= user._id %>")' class="btn btn-default btn-sm">Create Room</a>
         <a href="/logout" class="btn btn-default btn-sm"> Logout </a>
     </div>
 
@@ -23,7 +24,7 @@
         <!-- FACEBOOK INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                
+
 
                 <!-- check if the user has this token (is the user authenticated with this social account) -->
                 <% if (user.facebook.token) { %>
@@ -33,7 +34,7 @@
                         <strong>id</strong>: <%= user.facebook.id %><br>
                         <strong>token</strong>: <%= user.facebook.token %><br>
                         <strong>email</strong>: <%= user.facebook.email %><br>
-                        
+
                     </p>
 
                     <a href="/unlink/facebook" class="btn btn-primary" style="border: none">Unlink</a>
@@ -49,7 +50,7 @@
         <!-- SPOTIFY INFORMATION -->
         <div class="col-sm-6">
             <div class="well">
-                
+
 
                 <!-- check if the user has this token (is the user authenticated with this social account) -->
                 <% if (user.spotify.token) { %>
@@ -59,7 +60,7 @@
                         <strong>id</strong>: <%= user.spotify.id %><br>
                         <strong>token</strong>: <%= user.spotify.token %><br>
                         <strong>email</strong>: <%= user.spotify.email %><br>
-                        
+
                     </p>
 
                     <a href="/unlink/spotify" class="btn btn-info" style="background-color:#81b71a; border: none">Unlink</a>
