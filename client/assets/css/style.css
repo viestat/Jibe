@@ -129,8 +129,8 @@ body {
 }
 
 .fa-facebook-container{
-     position: absolute; 
-     left: 50%; 
+     position: absolute;
+     left: 50%;
      bottom:0;
      z-index:100;
 }
@@ -144,7 +144,7 @@ body {
     background: #837FB9;
     color: #FFFFFF;
     padding: 0.9em 1.1em;
-    
+
 }
 
 .login-bottom{
@@ -278,7 +278,7 @@ body {
 
 .clearfix:before, .current-playlist-buttons:after {
     content: " ";
-    display: table; 
+    display: table;
 }
 
 .button {
@@ -390,8 +390,8 @@ body {
     padding-bottom: 13px;
     background-image:
     linear-gradient(
-      to right, 
-      #DA6771 , 
+      to right,
+      #DA6771 ,
       #BBD099
     );
 }
@@ -432,7 +432,7 @@ body {
 }
 
 .song-info{
-    position:relative; 
+    position:relative;
     left: 110px;
     width:30%;
     display:block;
@@ -502,13 +502,13 @@ body {
     position: absolute;
     right:0;
     top:20px;
-   
+
 }
 
 /*
 .fa-facebook-container{
-     position: absolute; 
-     left: 50%; 
+     position: absolute;
+     left: 50%;
      bottom:0;
      z-index:100;
 }
@@ -522,7 +522,7 @@ body {
     background: #837FB9;
     color: #FFFFFF;
     padding: 0.9em 1.1em;
-    
+
 }
 */
 
@@ -602,7 +602,7 @@ body {
 }
 
 .upvote-button-expanded, .downvote-button-expanded{
-    
+
     float: left;
     overflow: hidden;
     align-content: center;
@@ -627,7 +627,7 @@ body {
     padding: 10px;
     margin-top: 12px;
     top: 0%;
-    
+
 }
 
 .upvote-button-expanded{
@@ -635,7 +635,7 @@ body {
     margin-top: 10px;
     background: #BBD099;
     color: #343447;
-    
+
 }
 .downvote-button-expanded{
     margin-top: 10px;
@@ -812,7 +812,7 @@ body {
     vertical-align: middle;
     color: #EEEDFA;
     line-height: 50px;
-    
+
 }
 
 .add-button{
@@ -930,6 +930,9 @@ body {
 #overlay-source a {font-size:0.8em;}
 #overlay-source .overlay-content{width:75%;top:50%;left:12.5%;margin-top:-100px; }
 
+#overlay-source-search {
+    visibility: hidden;
+}
 #overlay-source-search .overlay-content {padding-top:10px;}
 #overlay-source-search .overlay-content{width:100%;top:100px;left:0;}
 
@@ -970,8 +973,8 @@ body {
 }
 
 /*iPhone 5,5s*/
-@media only screen 
-  and (min-device-width: 320px) 
+@media only screen
+  and (min-device-width: 320px)
   and (max-device-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
