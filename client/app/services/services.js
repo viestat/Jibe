@@ -1,5 +1,6 @@
 angular.module('jibe.services', [])
 
+
 .factory('searchSpotify', function ($http){
   // this is our factory function for getting data from spotify, this will be run when we type in the search field
   var getData = function(data){

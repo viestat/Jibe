@@ -1,8 +1,7 @@
 angular.module('jibe', [
     'jibe.playlist',
-    'jibe.playlist.search',
+    'jibe.services',
     'jibe.host',
-    'jibe.home',
     'ngSanitize',
     'ui.select',
     'ui.router'
@@ -10,42 +9,46 @@ angular.module('jibe', [
 
 .config(function($httpProvider, $stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('home');
+  $urlRouterProvider.otherwise('/home');
+
+  // var authenticated = ['$q', 'AuthFactory', function ($q, AuthFactory) {
+  //   var deferred = $q.defer();
+  //   AuthFactory.isLoggedIn(false)
+  //     .then(function(isLoggedIn) {
+  //       if (isLoggedIn) {
+  //         deferred.resolve();
+  //       } else {
+  //         deferred.reject('Not logged in.');
+  //       }
+  //     });
+  //   return deferred.promise;
+  // }];
 
   $stateProvider
-    // .state('signin', {
-    //   templateUrl: 'app/auth/signin.html',
-    //   url: '/signin',
-    //   controller: 'AuthController'
-    // })
-    // .state('signup', {
-    //   templateUrl: 'app/auth/signup.html',
-    //   url: '/signup',
-    //   controller: 'AuthController'
-    // })
-    // .state('signout', {
-    //   templateUrl: 'app/auth/signout.html',
-    //   url: '/signout',
-    //   controller: 'AuthController'
-    // })
     .state('home', {
       templateUrl: 'app/home/home.html',
-      url: '',
-      controller: 'HomeCtrl'
+      url: ''
     })
     .state('host', {
       templateUrl: 'app/host/host.html',
       url: '/host/:playlistId',
       controller: 'PlaylistCtrl'
     })
-    .state('playlist', {
+    .state('guest', {
       templateUrl: 'app/playlist/playlist.html',
       url: '/playlist/:playlistId',
       controller: 'PlaylistCtrl'
     })
     // nested list with custom controller
-    .state('playlist.search', {
-        templateUrl: 'app/playlist/playlist-search.html',
-        controller: 'SearchCtrl'
+    .state('.search', {
+      parent: 'guest',
+      url: '/search',
+      templateUrl: 'app/playlist/playlist-search.html',
     });
 });
+// .run(function ($rootScope, $state) {
+//   // Redirect to login if route requires auth and you're not logged in
+//   $rootScope.$on('$stateChangeError', function (err, req) {
+//     $state.go('login');
+//   });
+// });
