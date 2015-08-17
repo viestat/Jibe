@@ -11,7 +11,7 @@ module.exports = {
     };
     statusCode = statusCode || 200;
     res.writeHead(statusCode, headers);
-    res.json(data);
+    res.end(data);
   },
 
   errorLogger: function (error, req, res, next) {
