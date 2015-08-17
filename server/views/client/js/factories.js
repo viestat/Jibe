@@ -75,12 +75,13 @@ angular.module('djBooth.factories', [])
         }
 
         // this is the post request for adding songs to our db and essentially the queue this is placeholder code
-        var createQueue = function() {
+        var createQueue = function(userData) {
+            console.log(userData)
             return $http({
                 method: 'POST',
                 url: '/api/playlist/create',
                 data: {
-                    userId: 'test'
+                    _creator: userData
                 }
             })
         }

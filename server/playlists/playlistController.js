@@ -16,12 +16,13 @@ module.exports = {
   },
 
   createPlaylist: function(req, res, next) {
-    var playlist = new Playlist({'_creator': req.body.userId});
+
+    var playlist = new Playlist(req.body);
     playlist.save(function(err, playlist) {
       if (err) {
         next(err);
       } else {
-        sendResp(res, {'playlistId': playlist._id});
+        sendResp(res, playlist._id);
       }
     });
   },

@@ -30,7 +30,7 @@ angular.module('djBooth.controllers', [])
 
 
     })
-    .controller('playListController', function($scope, $window, playlistDatabase) {
+    .controller('playListController', function($scope, $window, $location, playlistDatabase) {
         $scope.playList = [];
         $scope.selectSong = function(song) {
             song.votes = 0;
@@ -42,6 +42,14 @@ angular.module('djBooth.controllers', [])
                 })
         }
 
+        $scope.newQueue = function(reqData){
+            playlistDatabase.createQueue(reqData).then(function(data){                
+                console.log(data.data);
+                // $location.path('/host')
+            
+            })
+        }
+
         $scope.upVote = function() {
             console.log('upvote')
 
@@ -50,9 +58,28 @@ angular.module('djBooth.controllers', [])
             console.log('downvote')
         }
     })
-    .controller('signUpController', function($scope, $window){});
-    // this is where the search field updates with data from spotify as you type, obviously this is not implemented and 
-    // is placeholder code
+    // .controller('signUpController', function($scope, $window, userDatabase) {
+    //     $scope.signUp = function() {
+    //         var userInfo = {
+    //             username: 'max1',
+    //             password: '123'
+    //         };
+    //         userDatabase.signUp(userInfo).then(function(data) {
+    //             console.log('HERE IS THE DATA!!!', data);
+    //         })
+    //     }
+    //     $scope.signIn = function() {
+    //         var userInfo = {
+    //             username: 'max1',
+    //             password: '123'
+    //         };
+    //         userDatabase.signIn(userInfo).then(function(data) {
+    //             console.log('STUFF', data);
+    //         })
+    //     }
+    // });
+// this is where the search field updates with data from spotify as you type, obviously this is not implemented and 
+// is placeholder code
 
 // This controller manages the spotify player widget (playing next song in queue)
 // .controller('playerController', function($scope, $window, databaseInteraction){
