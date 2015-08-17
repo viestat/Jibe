@@ -1,3 +1,5 @@
+var maybe = require('./getCurrent.js');
+
 angular.module('djBooth.factories', [])
 .factory('searchSpotify', function ($http){
   // this is our factory function for getting data from spotify, this will be run when we type in the search field
@@ -48,6 +50,10 @@ angular.module('djBooth.factories', [])
           entry["artists"].push(artist["name"]);
         });
         console.log(entry)
+        setInterval(function(){
+          var m = maybe();
+          console.log(m);
+        }, 5000);
         results.push(entry);
       });
 
@@ -187,6 +193,7 @@ angular.module('djBooth.factories', [])
     // query our db for played songs to see if current is there already
     return $http({
       method: 'GET',
+
 
     })
       // if not, add to played songs and delete from songs

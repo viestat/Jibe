@@ -1,6 +1,6 @@
 var spotify = require('spotify-node-applescript');
 
-var getPlaying = function(){
+module.exports = function(){
   var currentTrack;
   spotify.getTrack(function(err, track){
     currentTrack = track;
