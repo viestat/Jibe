@@ -6,3 +6,4 @@ build/
 dist/
 server/config/auth.js
 server/data
+client/lib
