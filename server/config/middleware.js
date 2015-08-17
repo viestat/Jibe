@@ -49,4 +49,3 @@ module.exports = function(app, express) {
     require('../songs/songRoutes')(songRouter);
     require('../playlists/playlistRoutes')(playlistRouter);
     require('./auth-routes')(app, passport);
-};
