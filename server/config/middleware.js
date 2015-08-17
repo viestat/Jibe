@@ -23,7 +23,6 @@ module.exports = function (app, express) {
   app.use(passport.session()); // persistent login sessions
   app.use(flash()); // use connect-flash for flash messages stored in session
 
-
   // TODO: CHANGE DIR TO SERVE UP PUBLIC FILES
   app.use(express.static(__dirname + '/../../client'));
 

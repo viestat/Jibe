@@ -17,6 +17,18 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/home', isLoggedIn, function(req, res) {
+        res.render('../views/home.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+    app.get('/playlist', isLoggedIn, function(req, res) {
+        res.render('../views/playlist.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
     // =====================================
     // FACEBOOK ROUTES =====================
     // =====================================
@@ -24,12 +36,17 @@ module.exports = function(app, passport) {
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
     // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
+    /*app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect : '/profile',
             failureRedirect : '/'
-        }));
+        }));*/
 
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : '/home',
+            failureRedirect : '/'
+        }));
 
     // =====================================
     // SPOTIFY ROUTES =====================
@@ -40,7 +57,7 @@ module.exports = function(app, passport) {
     // handle the callback after facebook has authenticated the user
     app.get('/auth/spotify/callback',
         passport.authenticate('spotify', {
-            successRedirect : '/profile',
+            successRedirect : '/playlist',
             failureRedirect : '/'
         }));
 
