@@ -1,10 +1,10 @@
 // load all the things we need
 var LocalStrategy    = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var SpotifyStrategy = require('passport-spotify').Strategy;
+var SpotifyStrategy  = require('passport-spotify').Strategy;
 
 // load up the user model
-var User       = require('../users/userModel');
+var User = require('../users/userModel');
 
 // load the auth variables
 var configAuth = require('./auth');
@@ -22,7 +22,7 @@ module.exports = function(passport) {
             done(err, user);
         });
     });
-    
+
     // code for login (use('local-login', new LocalStategy))
     // code for signup (use('local-signup', new LocalStategy))
 
@@ -62,11 +62,11 @@ module.exports = function(passport) {
                         var newUser            = new User();
 
                         // set all of the facebook information in our user model
-                        newUser.facebook.id    = profile.id; // set the users facebook id                   
-                        newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
+                        newUser.facebook.id    = profile.id; // set the users facebook id
+                        newUser.facebook.token = token; // we will save the token that facebook provides to the user
                         newUser.facebook.name  = profile.name.givenName + " " + profile.name.familyName; // look at the passport user profile to see how names are returned
                         newUser.facebook.email = profile.emails[0].value;
-                        newUser.facebook.photo = profile.photos[0].value // facebook can return multiple emails so we'll take the first
+                        newUser.facebook.photo = profile.photos[0].value; // facebook can return multiple emails so we'll take the first
 
                         // save our user to the database
                         newUser.save(function(err) {
@@ -99,7 +99,7 @@ module.exports = function(passport) {
 
             }
 
-            
+
         });
 
     }));
@@ -113,7 +113,7 @@ module.exports = function(passport) {
         clientID        : configAuth.spotifyAuth.clientID,
         clientSecret    : configAuth.spotifyAuth.clientSecret,
         callbackURL     : configAuth.spotifyAuth.callbackURL,
-        passReqToCallback : true 
+        passReqToCallback : true
     },
 
     // spotify will send back the token and profile
@@ -139,8 +139,8 @@ module.exports = function(passport) {
                         var newUser            = new User();
 
                         // set all of the facebook information in our user model
-                        newUser.spotify.id    = profile.id; // set the users facebook id                   
-                        newUser.spotify.token = token; // we will save the token that facebook provides to the user                    
+                        newUser.spotify.id    = profile.id; // set the users facebook id
+                        newUser.spotify.token = token; // we will save the token that facebook provides to the user
                         newUser.spotify.name  = profile.displayName; // look at the passport user profile to see how names are returned
                         newUser.spotify.email = profile._json.email;
                         newUser.spotify.photo = profile.photos[0];
@@ -165,7 +165,7 @@ module.exports = function(passport) {
                 // update the current users facebook credentials
                 user.spotify.id    = profile.id;
                 user.spotify.token = token;
-                user.spotify.name  = profile.displayName; 
+                user.spotify.name  = profile.displayName;
                 user.spotify.email = profile._json.email;
                 user.spotify.photo = profile.photos[0];
 
@@ -177,7 +177,7 @@ module.exports = function(passport) {
                 });
 
             }
-        
+
 
     }));
 

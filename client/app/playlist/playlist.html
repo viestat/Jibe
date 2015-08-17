@@ -1,0 +1,58 @@
+<div class='container-fluid'>
+    <h1>#PartyRoom</h1>
+    <div >
+        <iframe src="https://embed.spotify.com/?uri=spotify:track:4th1RQAelzqgY7wL53UGQt" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+    <!-- <form name='searchForm' class='form-inline'>
+        <input type='text' class='form-control' ng-model='song' placeHolder='Select a song' update-search="getSong(song)">
+    </form>
+-->
+    <!-- search field -->
+    <a sref=".search"></a>
+
+    <!-- playlist -->
+    <div class='panel panel-primary'>
+        <div class='panel-heading'>
+            <h3 class='panel-title'> Playlist</h3>
+        </div>
+        <ul class='panel body list-unstyled'>
+            <!-- 'this is where the playlist is' -->
+            <li ng-repeat="song in playList" class="row-fluid inline ">
+                <p>
+                    <div>{{song.name}} -{{song.artists[0]}} {{song.votes}}
+                        <span  ng-click='upVote()'class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                        <span ng-click='downVote()'class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                    </div>
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+$(document).ready(function () {
+
+    $("#share-open").click(function(){
+        $('#overlay-share').css('visibility','visible');
+    });
+
+    $("#share-close").click(function(){
+        $('#overlay-share').css('visibility','hidden');
+    });
+
+    (function ($) {
+
+        $('#filter').keyup(function () {
+
+            var rex = new RegExp($(this).val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+
+        })
+
+    }(jQuery));
+
+});
+</script>

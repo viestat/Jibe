@@ -27,7 +27,6 @@ module.exports = function (app, express) {
 
   app.use('/api/playlist', playlistRouter); // use playlist router for all playlist requests
 
-  app.use('/api/song', helpers.decode);
   app.use('/api/song', songRouter); // user link router for link request
 
   app.use(helpers.errorLogger);
