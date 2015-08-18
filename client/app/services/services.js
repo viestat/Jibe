@@ -87,7 +87,6 @@ angular.module('jibe.services', [])
 
     return {
         getQueue: getQueue,
-        createQueue: createQueue,
         addSong: addSong,
         removeSong: removeSong
     };
