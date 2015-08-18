@@ -24,7 +24,6 @@ angular.module('jibe.playlist', ['jibe.services'])
 
     $scope.getSongs = function(reqString) {
         searchYouTube.getData(reqString).then(function(data) {
-                console.log(data);
                 $scope.results = data;
             })
             .catch(function(err) {
@@ -46,10 +45,10 @@ angular.module('jibe.playlist', ['jibe.services'])
     }];
 
     $scope.selectSong = function(song) {
-        song.votes = 0;
-        console.log(song);
-        playlistDatabase.addSong(song, playListId).then(function() {
-            $scope.playList = playlistDatabase.getQueue(playListId);
+        console.log(song)
+        playlistDatabase.addSong(song, $stateParams.playlistId).then(function(data) {
+            console.log(data);
+            $scope.playList = playlistDatabase.getQueue($stateParams.playlistId);
 
         });
 
