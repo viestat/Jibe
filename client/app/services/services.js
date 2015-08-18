@@ -73,7 +73,7 @@ angular.module('jibe.services', [])
     var addSong = function(songData, playlistId) {
         return $http({
             method: 'POST',
-            url: '/api/playlist/add/' + playlistId + '/' + songData.songId,
+            url: '/api/playlist/add/' + playlistId + '/' + songData.uri,
             data: songData
         });
     };
@@ -87,7 +87,6 @@ angular.module('jibe.services', [])
 
     return {
         getQueue: getQueue,
-        createQueue: createQueue,
         addSong: addSong,
         removeSong: removeSong
     };

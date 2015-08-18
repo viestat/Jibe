@@ -9,27 +9,33 @@ angular.module('jibe', [
 
 .config(function($httpProvider, $stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/home');
 
-  $stateProvider
-    .state('home', {
-      templateUrl: 'app/home/home.html',
-      url: ''
+        $stateProvider
+            .state('home', {
+                templateUrl: 'app/home/home.html',
+                url: ''
+            })
+            .state('host', {
+                templateUrl: 'app/host/host.html',
+                url: '/host/:playlistId',
+                controller: 'PlaylistCtrl'
+            })
+            .state('guest', {
+                templateUrl: 'app/playlist/playlist.html',
+                url: '/playlist/:playlistId',
+                controller: 'PlaylistCtrl'
+            })
+            // nested list with custom controller
+            .state('.search', {
+                parent: 'guest',
+                url: '/search',
+                templateUrl: 'app/playlist/playlist-search.html',
+            });
     })
-    .state('host', {
-      templateUrl: 'app/host/host.html',
-      url: '/host/:playlistId',
-      controller: 'PlaylistCtrl'
-    })
-    .state('guest', {
-      templateUrl: 'app/playlist/playlist.html',
-      url: '/playlist/:playlistId',
-      controller: 'PlaylistCtrl'
-    })
-    // nested list with custom controller
-    .state('.search', {
-      parent: 'guest',
-      url: '/search',
-      templateUrl: 'app/playlist/playlist-search.html',
+    .constant('YT_event', {
+        STOP: 0,
+        PLAY: 1,
+        PAUSE: 2,
+        STATUS_CHANGE: 3
     });
-});

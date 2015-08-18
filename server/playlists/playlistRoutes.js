@@ -4,7 +4,7 @@ module.exports = function (app) {
   // app === playlistRouter injected from middlware.js
 
   app.param('playlistId', playlistController.findPlaylist);
-  app.param('songId', playlistController.hasSong);
+  // app.param('songId', playlistController.hasSong);
 
   app.get('/:playlist', playlistController.getPlaylist);
   app.get('/:playlist', playlistController.getPlaylist);

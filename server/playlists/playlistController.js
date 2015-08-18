@@ -1,4 +1,5 @@
 var Playlist       = require('./playlistModel'),
+    Song           = require('../songs/songModel'),
     SongController = require('../songs/songController'),
     Q              = require('q'),
     sendResp       = require('../config/helpers').sendResponse;
@@ -6,6 +7,7 @@ var Playlist       = require('./playlistModel'),
 module.exports = {
 
   getPlaylist: function(req, res, next) {
+    console.log('PLAYLIST', req.playlist)
     req.playlist
       .populate('songs')
       .populate('playedSongs')
@@ -62,12 +64,14 @@ module.exports = {
   },
 
   addSong: function(req, res, next) {
+
     if (req.hasSong) {
       throw new Error('Playlist Error: song already in playlist.');
     } else {
-      var song = new Song(req.body);
+      var song = new Song({title: req.body.title, uri: req.body.uri});
       song.save(function(err, song) {
         if (err) {
+          console.log('ERROR')
           next(err);
         } else {
           console.log('SUCCESS: song added to playlist.');

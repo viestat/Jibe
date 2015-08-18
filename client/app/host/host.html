@@ -1,5 +1,6 @@
 <div id="overlay-source-search" class="overlay">
 
+
    <a href="#" id='search-close' class="collapse-button">
         <i class="fa fa-minus"></i>
     </a>
@@ -7,11 +8,18 @@
    <div id="source-name">YouTube</div>
 
    <div id="search-form">
-       <input type="text" class="input_text light" placeholder="Search Now">
-       <input type="submit" class="input_submit dark-button black" value="GO">
+     <!--   <input type="text" class="input_text light" placeholder="Search Now">
+       <input type="submit" class="input_submit dark-button black" value="GO"> -->
+                <ui-select ng-model='result.selected'  on-select='selectSong(result.selected)'  theme="bootstrap" ng-disabled="false" reset-search-input="false" uiSelectConfig.appendToBody = true; style="width: 300px;">
+           <ui-select-match placeholder="Enter a song...">{{$select.selected.song_name}}</ui-select-match>
+           <ui-select-choices repeat="result in results |limitTo:10" refresh="getSongs($select.search)" refresh-delay="0">
+               <div ng-bind-html="result.title|highlight: $select.search"></div>
+           </ui-select-choices>
+       </ui-select>
+
    </div>
 
-   <div class="overlay-content">
+<!--    <div class="overlay-content">
        <div class="song-container clearfix">
            <img class="small-artwork" src="assets/img/now-playing-img.jpg">
            <div class="song-info">
@@ -45,7 +53,7 @@
                Add
            </a>
        </div>
-   </div>
+   </div> -->
 
 </div>
 
@@ -89,6 +97,8 @@
 <div class="now-playing-header">
     <span class="now-playing-title black">Now Playing</span>
 </div>
+
+
 
 <!-- ng-controller='PlaylistCtrl' -->
 <div class="now-playing-container">

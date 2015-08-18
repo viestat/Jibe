@@ -16,14 +16,8 @@ var Schema = mongoose.Schema;
 // Song schema
 //===========================
 var SongSchema = new Schema({
-  spotifyId: {type: String, required: true},
-  artist: [{type: String, required: true}],
-  song_name: {type: String, required: true},
-  album_name:  String,
-  duration_ms: Number,
-  popularity: Number,
-  preview_url: String,
-  image: String,
+  uri: {type: String, required: true},
+  title: {type: String, required: true},
   meta: {
     upvotes: Number,
     upvoteUsers: [{type: Schema.Types.ObjectId, ref: 'User'}], // references User _id
@@ -31,7 +25,6 @@ var SongSchema = new Schema({
     downvoteUsers: [{type: Schema.Types.ObjectId, ref: 'User'}] // references User _id
   },
   updated_at: { type: Date },
-  plays: Number,
   played: {
     type: Boolean,
     default: false

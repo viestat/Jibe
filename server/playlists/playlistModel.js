@@ -36,10 +36,11 @@ var PlaylistSchema = new Schema({
 
 
 PlaylistSchema.methods.hasSong = function (songId) {
+  console.log(this)
   var promise = this.populate('songs.song').exec(function(err, songs) {
     if (err) throw new Error('Playlist Error: could not check if song in playlist.');
     return songs.some(function(song) {
-      return song.spotifyId === songId;
+      return song.uri === songId;
     });
   });
   return promise;
@@ -49,7 +50,7 @@ PlaylistSchema.methods.hasPlayed = function(songId) {
   var promise = this.populate('playedSongs.song').exec(function(err, songs) {
     if (err) throw new Error('Playlist Error: could not check if song was played for playlist.');
     return songs.some(function(song) {
-      return song.spotifyId === songId;
+      return song.uri === songId;
     });
   });
   return promise;
