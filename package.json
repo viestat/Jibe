@@ -2,7 +2,7 @@
   "name": "jibe",
   "version": "1.0.0",
   "description": "add songs and rock the vote on music playlists",
-  "main": "app.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "karma start karma.conf.js",
     "start": "gulp"
