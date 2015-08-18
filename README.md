@@ -1,12 +1,12 @@
 # Project Name
 
-> Pithy project description
+An app that allows you to crowd source a music video playlist.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Andrés C. Viesca
+  - __Scrum Master__: Michael Kurrels
+  - __Development Team Members__: Steven Wu, Nate Meier
 
 ## Table of Contents
 
