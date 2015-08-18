@@ -9,7 +9,7 @@ angular.module('jibe.playlist', ['jibe.services'])
     ]);
 }])
 
-.controller('PlaylistCtrl', function PlaylistCtrl($scope, $window, $location, searchYouTube, playlistDatabase, songDatabase) {
+.controller('PlaylistCtrl', function PlaylistCtrl($scope, $window, $location, searchYouTube, playlistDatabase, songDatabase, $stateParams) {
 
     // search functionality
     $scope.modalShown = false;
