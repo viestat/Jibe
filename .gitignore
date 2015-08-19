@@ -30,3 +30,5 @@ bower_components/
 client/lib/
 server/data
 server/auth/auth.js
+
+**/test.*
