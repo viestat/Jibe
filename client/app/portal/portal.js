@@ -1,4 +1,4 @@
-var portal = angular.module('jibe.portal', ['jibe.enqueue', 'jibe.playlist']);
+var portal = angular.module('jibe.portal', ['jibe.enqueue']);
 
 portal.controller('PortalController', function ($scope) {
   $scope.modalShown = false;
