@@ -3,6 +3,31 @@
   <a href="#/home"><div class="nav-toggle"><i class="fa fa-sign-out"></i></div></a>
 </div>
 
+<div id="overlay-source-search" class="overlay">
+  <a href="#" id='search-close' class="collapse-button">
+    <i class="fa fa-minus"></i>
+  </a>
+
+  <div id="source-name">YouTube</div>
+
+  <div id="search-form">
+    <input type="text" class="input_text light" placeholder="Search Now" ng-model='searchInput' ng-change="getSongs(searchInput)">
+    <input type="submit" class="input_submit dark-button black" value="GO" ng-click="getSongs(searchInput)">
+  </div>
+
+  <div class="overlay-content">
+    <div class="song-container clearfix" ng-show="searchInput!== ''" ng-repeat="result in results |limitTo:20" refresh="getSongs($select.search)" refresh-delay="0">
+      <img class="small-artwork" src="http://i1.ytimg.com/vi/{{result.uri}}/1.jpg ">
+      <div class="song-info">
+        <div class="song-name light medium">{{ result.title }}</div>
+        <!-- <div class="artist-name light small">Beyonce and the super groovy chicks</div> -->
+      </div>
+      <a href="" class="add-button dark-button black">Add</a>
+    </div>
+  </div>
+</div>
+
+
 <form name="party-setup">
   <div class="button-container-host">
     <div class="start-button light-button button no-padding">
@@ -22,3 +47,4 @@
     </a>
   </div>
 </form>
+
