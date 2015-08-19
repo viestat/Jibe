@@ -1,0 +1,41 @@
+<div ng-controller="PartyController">
+  
+  <div class="party-side-panel fadeIn fadeOut animated"> 
+    <h1> #stevensDopePartyJam </h1>
+    
+    <div class="line">
+      <hr>
+    </div>
+
+    <h3> Now playing: </h3>
+    <h2>{{nowPlaying.artist}} - {{nowPlaying.title}}</h2>
+
+    <div class="line">
+      <hr>
+    </div>
+
+    <h3> Coming up next: </h3>
+<!-- 
+    <div class="line">
+      <hr>
+    </div>
+ -->
+    <table ng-table class="table">
+      <tr ng-repeat="song in queue | orderBy:'-score' | limitTo : 3">
+        <td class="artist-col" data-title="'Artist'">{{song.artist}}</td>
+        <td class="song-col" data-title="'Song'">{{song.title}}</td>
+        <td class="score-col" data-title="'Score'">{{song.score}}</td>
+      </tr>
+    </table>
+
+    <div class="line">
+      <hr>
+    </div>
+
+    <h3> Join the party: </h3>
+    <img class="qr" src="../../assets/img/qr.png"> </img>
+
+  </div>
+  <!-- <iframe id="video" src="//www.youtube.com/embed/5iiPC-VGFLU?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe> -->
+  <iframe id="video" src="//www.youtube.com/embed/VAPJ_iieems?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+</div>

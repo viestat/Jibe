@@ -1,13 +1,13 @@
-var host = angular.module('jibe.host', []);
+var portal = angular.module('jibe.portal', []);
 
-host.controller('HostCtrl', ['$scope', function HostCtrl($scope) {
+portal.controller('PortalController', ['$scope', function HostCtrl($scope) {
   $scope.modalShown = false;
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
   };
 }]);
 
-host.directive('modalDialog', function() {
+portal.directive('modalDialog', function() {
   return {
     restrict: 'E',
     scope: {

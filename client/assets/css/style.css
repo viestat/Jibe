@@ -283,10 +283,10 @@ body {
 
 .button {
     width: 80%;
-    //height: 100%;
     padding: 30px 0px;
     text-align: center;
     margin: 10px auto;
+    box-shadow: 1px;
 }
 
 .dark-button{
@@ -301,6 +301,15 @@ body {
     bottom:0;
     height:50%;
 }
+
+.button-container-host {
+    position: absolute;
+    display:block;
+    width:100%;
+    bottom:0;
+    height:80%;
+}
+
 .start-button{
     position: relative;
     z-index: 1;
@@ -310,6 +319,7 @@ body {
 .light-button{
     background-color:  #EEEDFA;
     color: #343447;
+    margin-bottom: 40px;
 }
 
 .light-input{
@@ -322,6 +332,9 @@ body {
     padding: 30px;
 }
 
+.start-party-container {
+    margin-top: 100px;
+}
 .no-padding {
     padding: 0;
 }
@@ -963,27 +976,27 @@ body {
 #overlay-source-search #search-form .input_text {-webkit-appearance: none; border-radius:0; background-color:#535181; border:none; width:100%; margin-right:70px;left:0; font-size:1em; padding:10px;}
 #overlay-source-search #search-form .input_submit {-webkit-appearance: none; border-radius:0;  position:absolute;border:none; width:60px; right:0;font-size:1em; padding:10px; top:0;}
 #overlay-source-search .song-container {position:relative;
-    border-bottom: 1px solid #343447;
-    display:block;
-    min-height:80px;}
+  border-bottom: 1px solid #343447;
+  display:block;
+  min-height:80px;}
 #overlay-source-search .song-container .small-artwork {left:40px; width:40px; height:40px;}
 #overlay-source-search .song-container .song-info {left:100px; width:50%;}
 
 #overlay-source-search .song-container .add-button {
-    position: absolute;
-    right: 0;
-    color: #fff;
-    top: 20px;
-    width: 38px;
-    height: 38px;
-    width:60px;
-    text-decoration:none;
-    text-align: center;
-    line-height: 38px;
-    vertical-align: middle;
-    text-transform:uppercase;
-    font-size:0.8em;
-        font-family: "Montserrat Black";
+  position: absolute;
+  right: 0;
+  color: #fff;
+  top: 20px;
+  width: 38px;
+  height: 38px;
+  width:60px;
+  text-decoration:none;
+  text-align: center;
+  line-height: 38px;
+  vertical-align: middle;
+  text-transform:uppercase;
+  font-size:0.8em;
+  font-family: "Montserrat Black";
 }
 
 /*iPhone 5,5s*/
@@ -1018,4 +1031,99 @@ body {
     #overlay-source p {font-size:0.9em;}
     #overlay-source a {font-size:0.8em;}
     #overlay-source .overlay-content{top:100px;width:75%;left:12.5%; }
+}
+
+#video {
+  width: 100%;
+  height: 100%;
+}
+
+.party-side-panel {
+  text-align: center;
+  margin: 0 auto;
+  z-index: 1;
+  float: right;
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  min-width: 400px;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.75);
+}
+
+.animated { 
+    -webkit-animation-duration: 1s; 
+    animation-duration: 1s; 
+    -webkit-animation-fill-mode: both; 
+    animation-fill-mode: both; 
+    -webkit-animation-timing-function: ease-in; 
+    animation-timing-function: ease-in; 
+} 
+
+@-webkit-keyframes fadeIn { 
+    0% {opacity: 0;} 
+    100% {opacity: 1;} 
+} 
+@keyframes fadeIn { 
+    0% {opacity: 0;} 
+    100% {opacity: 1;} 
+} 
+.fadeIn { 
+  -webkit-animation-name: fadeIn; 
+  animation-name: fadeIn; 
+}
+
+/*.animated { 
+  -webkit-animation-duration: 1s; 
+  animation-duration: 1s; 
+  -webkit-animation-fill-mode: both; 
+  animation-fill-mode: both; 
+} */
+
+@-webkit-keyframes fadeOut { 
+    0% {opacity: 1;} 
+    100% {opacity: 0;} 
+} 
+@keyframes fadeOut { 
+    0% {opacity: 1;} 
+    100% {opacity: 0;} 
+} 
+.fadeOut { 
+  -webkit-animation-delay: 15s; /* Chrome, Safari, Opera */
+  animation-delay: 15s;
+  -webkit-animation-name: fadeOut; 
+  animation-name: fadeOut; 
+}
+.line {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.qr {
+  position: relative;  
+  height: 30%;
+}
+
+.table {
+  margin: 0 auto;
+}
+.artist-col,
+.song-col,
+.score-col {
+  text-align: center;
+}
+
+.artist-col {
+  width: 33%;
+  min-width: 150px;
+}
+
+.song-col {
+  width: 33%;
+  min-width: 200px;
+}
+
+.score-col {
+  width: 33%;
+  min-width: 30px;
 }
