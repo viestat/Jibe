@@ -1,5 +1,5 @@
 module.exports = {
 
-    'url' : 'mongodb://localhost/jibe'
+    'url' : process.env.MONGOLAB_URI || 'mongodb://localhost/jibe'
 
 };
