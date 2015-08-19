@@ -19,11 +19,17 @@ var app = express();
 
 // configure our server with all the middleware and and routing
 require('./config/middleware.js')(app, express);
-require('./config/passport')(passport); // pass passport for configuration
+// require('./config/passport')(passport); // pass passport for configuration
 
 //========================
 // start app
 //========================
+
+// Author: Nate Meier
+// Description: Serves app home page; angular takes care of all routing 
+app.get('/', function (req, res) {
+  res.sendfile('./client/index.html');
+});
 
 // startup our app at http://localhost:8080
 app.listen(port);

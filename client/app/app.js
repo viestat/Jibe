@@ -1,45 +1,50 @@
-angular.module('jibe', [
-    'jibe.playlist',
-    'jibe.services',
-    'jibe.host',
-    'ngSanitize',
-    'ui.select',
-    'ui.router'
-])
+var app = angular.module('jibe', [
+  'jibe.playlist',
+  'jibe.services',
+  'jibe.host',
+  'ngSanitize',
+  'ui.select',
+  'ui.router']);
 
-.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
+app.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 
-        $stateProvider
-            .state('login', {
-                templateUrl: 'app/login/login.html',
-                url: ''
-            })
-            .state('home', {
-                templateUrl: 'app/home/home.html',
-                url: '/home'
-            })
-            .state('host', {
-                templateUrl: 'app/host/host.html',
-                url: '/host/:playlistId',
-                controller: 'PlaylistCtrl'
-            })
-            .state('guest', {
-                templateUrl: 'app/playlist/playlist.html',
-                url: '/playlist/:playlistId',
-                controller: 'PlaylistCtrl'
-            })
-            // nested list with custom controller
-            .state('.search', {
-                parent: 'guest',
-                url: '/search',
-                templateUrl: 'app/playlist/playlist-search.html',
-            });
+  $stateProvider
+    .state('home', {
+      url: '/home',
+      templateUrl: 'app/home/home.html'
     })
-    .constant('YT_event', {
-        STOP: 0,
-        PLAY: 1,
-        PAUSE: 2,
-        STATUS_CHANGE: 3
+    .state('host', {
+      url: '/host/:playlistId',
+      templateUrl: 'app/host/host.html',
+      controller: 'PlaylistCtrl'
     });
+    // .state('login', {
+    //     url: ''
+    //     templateUrl: 'app/login/login.html',
+    // })
+    // .state('host', {
+    //     templateUrl: 'app/host/host.html',
+    //     url: '/host/:playlistId',
+    //     controller: 'PlaylistCtrl'
+    // })
+    // .state('guest', {
+    //     templateUrl: 'app/playlist/playlist.html',
+    //     url: '/playlist/:playlistId',
+    //     controller: 'PlaylistCtrl'
+    // })
+    // nested list with custom controller
+    // .state('.search', {
+    //     parent: 'guest',
+    //     url: '/search',
+    //     templateUrl: 'app/playlist/playlist-search.html'
+    // });
+});
+
+app.constant('YT_event', {
+  STOP: 0,
+  PLAY: 1,
+  PAUSE: 2,
+  STATUS_CHANGE: 3
+});

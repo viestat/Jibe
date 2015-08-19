@@ -33,7 +33,7 @@ module.exports = function (app, express) {
   app.use(helpers.errorHandler);
 
   // inject our routers into their respective route files
-  require('../songs/songRoutes')(songRouter);
-  require('../playlists/playlistRoutes')(playlistRouter);
-  require('./auth-routes')(app, passport);
+  // require('../songs/songRoutes')(songRouter);
+  // require('../playlists/playlistRoutes')(playlistRouter);
+  // require('./auth-routes')(app, passport);
 };

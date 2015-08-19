@@ -1,20 +1,24 @@
 <div class="navbar">
-    <div class="nav-logo"></div>
-    <a href="/logout"><div class="nav-toggle"><i class="fa fa-sign-out"></i></div></a>
+  <div class="nav-logo"></div>
+  <a href="/logout"><div class="nav-toggle"><i class="fa fa-sign-out"></i></div></a>
 </div>
 
 <div class="logo-container">
-    <div class="logo"></div>
+  <div class="logo"></div>
 </div>
 
 <div class="button-container">
+  <a href="/host">
+    <div class="start-button dark-button button">
+      <span class="bold">START</span><span class="normal"> A #PARTY</span>
+    </div>
+  </a>
 
-    <a href="/auth/spotify"><div  class="start-button dark-button button">
-        <span class="bold">START</span><span class="normal"> A PARTY</span>
-    </div></a>
-
-<div class="start-button light-button button">
-    <span class="bold">JOIN</span><span class="normal"> A PARTY</span>
+<div class="start-button light-button button no-padding">
+  <form ng-submit="joinParty()">
+    <input class="light-input normal" placeholder="JOIN A #PARTY"> </input>
+    <!-- <span class="bold">JOIN</span><span class="normal"> A PARTY</span> -->
+  </form>
 </div>
 
 </div>
