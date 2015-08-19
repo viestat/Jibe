@@ -1,11 +1,11 @@
-var portal = angular.module('jibe.portal', []);
+var portal = angular.module('jibe.portal', ['jibe.enqueue', 'jibe.playlist']);
 
-portal.controller('PortalController', ['$scope', function HostCtrl($scope) {
+portal.controller('PortalController', function ($scope) {
   $scope.modalShown = false;
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
   };
-}]);
+});
 
 portal.directive('modalDialog', function() {
   return {

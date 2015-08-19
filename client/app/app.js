@@ -4,6 +4,7 @@ var app = angular.module('jibe', [
   'jibe.portal',
   'jibe.party',
   // 'jibe.playlist',
+  'jibe.enqueue',
   'jibe.services',
   'ngSanitize',
   'ui.select',
@@ -19,23 +20,32 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
     // App main page
     .state('home', {
       url: '/home',
-      templateUrl: 'app/home/home.html'
+      templateUrl: 'app/home/home.html',
+      controller: 'HomeController'
     })
     // Party screen with fullscreen youtube video
     .state('party', {
       url: '/party',
-      templateUrl: 'app/party/party.html'
+      templateUrl: 'app/party/party.html',
+      controller: 'PartyController'
     })
     // This is the main screen that users will interface with
     .state('portal', {
       url: '/portal',
-      templateUrl: 'app/portal/portal.html'
+      templateUrl: 'app/portal/portal.html',
+      controller: 'PortalController'
     })
     // This is the view that the host uses to create a party event
     .state('host', {
       url: '/host',
       templateUrl: 'app/host/host.html',
-      controller: 'PlaylistCtrl'
+      controller: 'HostController'
+    })
+    // This is the view that allows users to add songs to the playlist queue
+    .state('enqueue', {
+      url: '/enqueue',
+      templateUrl: 'app/enqueue/enqueue.html',
+      controller: 'EnqueueController'
     });
     // .state('login', {
     //     url: ''

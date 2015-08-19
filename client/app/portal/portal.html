@@ -1,4 +1,4 @@
-<div id="overlay-source-search" class="overlay">
+<!-- <div id="overlay-source-search" class="overlay">
   <a href="#" id='search-close' class="collapse-button">
     <i class="fa fa-minus"></i>
   </a>
@@ -15,14 +15,13 @@
       <img class="small-artwork" src="http://i1.ytimg.com/vi/{{result.uri}}/1.jpg ">
       <div class="song-info">
         <div class="song-name light medium">{{ result.title }}</div>
-        <!-- <div class="artist-name light small">Beyonce and the super groovy chicks</div> -->
       </div>
       <a href="" class="add-button dark-button black">Add</a>
     </div>
   </div>
-</div>
+</div> -->
 
-
+<!--
 <div id="overlay-share" class="overlay">
   <a class="collapse-button" id="share-close">
     <i class="fa fa-minus"></i>
@@ -34,7 +33,7 @@
     <div class="overlay-button normal dark-button">Copy link to clipboard</div>
   </div>
 </div>
-
+-->
 
 <div class="navbar">
   <div class="nav-logo"></div>
@@ -42,8 +41,7 @@
 </div>
 
 
-<!-- ng-controller='PlaylistCtrl' -->
-<div class="current-playlist-container">
+<div class="current-playlist-container" ng-controller="PlaylistController">
   <p class="current-playlist-header black">Current Playlist</p>
   <p class="current-playlist-name light">{{ playlistName }}</p>
 </div>
@@ -55,9 +53,9 @@
 
 
 <!-- ng-controller='HostCtrl' -->
-<div class="current-playlist-buttons">
+<div class="current-playlist-buttons" ng-controller="EnqueueController">
   <!-- ng-click='toggleModal()' -->
-  <a><div class="nominate-button normal dark-button" id="search-open">Nominate a Song</div></a>
+  <a href="#/enqueue"><div class="nominate-button normal dark-button" id="search-open">Nominate a Song</div></a>
   <a><div class="share-button normal dark-button" id="share-open">Share</div></a>
 </div>
 
@@ -68,7 +66,7 @@
 
 
 <!-- ng-controller='PlaylistCtrl' -->
-<div class="now-playing-container">
+<div class="now-playing-container" ng-controller="PlaylistController">
   <img class="now-playing-img" src="{{currentSong.artwork}}">
   <div class="now-playing-info">
     <div class="now-playing-song light">{{currentSong.name}}</div>
@@ -94,7 +92,7 @@
 </div>
 
 <!-- ng-controller="PlaylistCtrl" -->
-<div>
+<div ng-controller="PlaylistController">
     <div ng-repeat="(i, song) in queue">
 
         <div class="song-collapsed-container clearfix" collapse="song.isCollapsed">
@@ -164,6 +162,7 @@
     </div>
 </div>
 
+<!--
 <script>
 $(document).ready(function () {
 
@@ -203,3 +202,4 @@ $(document).ready(function () {
 
 });
 </script>
+-->

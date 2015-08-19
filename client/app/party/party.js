@@ -2,7 +2,10 @@ var party = angular.module('jibe.party', ['ngTable']);
 
 party.controller('PartyController', function ($scope, $location) {
 
-  $scope.nowPlaying = {artist: "Ozma", title: "Domino Effect"};
+  $scope.party = {
+    name: 'default',
+    nowPlaying: {artist: "Ozma", title: "Domino Effect"}
+  };
 
   $scope.url = '//www.youtube.com/embed/VAPJ_iieems' + '?rel=0&autoplay=1';
   $scope.queue = [
