@@ -15,11 +15,11 @@
     </div>
 
     <h3> Coming up next: </h3>
-
+<!-- 
     <div class="line">
       <hr>
     </div>
-
+ -->
     <table ng-table class="table">
       <tr ng-repeat="song in queue | orderBy:'-score' | limitTo : 3">
         <td class="artist-col" data-title="'Artist'">{{song.artist}}</td>
