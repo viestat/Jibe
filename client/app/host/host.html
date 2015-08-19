@@ -3,22 +3,25 @@
   <a href="#/home"><div class="nav-toggle"><i class="fa fa-sign-out"></i></div></a>
 </div>
 
-<form name="party-setup">
-  <div class="button-container-host">
-    <div class="start-button light-button button no-padding">
-      <input class="light-input normal" placeholder="ENTER PARTY NAME"> </input>
+<div ng-controller="HostController">
+  <form name="party-setup">
+    <div class="button-container-host">
+      <div class="start-button light-button button no-padding">
+        <input class="light-input normal" placeholder="ENTER PARTY NAME" ng-model="party.name" name="party-name"> </input>
+      </div>
+
+      <a href="#/enqueue">
+        <div class="start-button dark-button button">
+          <span class="bold">ADD</span><span class="normal"> SONGS TO QUEUE</span>
+        </div>
+      </a>
+
+      <a href="#/party" ng-click="startParty(party-name)">
+        <div class="start-button dark-button button">
+          <span class="bold">START</span><span class="normal"> THE PARTY</span>
+        </div>
+      </a>
     </div>
+  </form>
+</div>
 
-    <a href="">
-      <div class="start-button dark-button button">
-        <span class="bold">ADD</span><span class="normal"> SONGS TO QUEUE</span>
-      </div>
-    </a>
-
-    <a href="#/party">
-      <div class="start-button dark-button button">
-        <span class="bold">START</span><span class="normal"> THE PARTY</span>
-      </div>
-    </a>
-  </div>
-</form>

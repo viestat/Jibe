@@ -1,11 +1,11 @@
 var host = angular.module('jibe.host', []);
 
-host.controller('HostCtrl', ['$scope', function HostCtrl($scope) {
+host.controller('HostController', function ($scope) {
   $scope.modalShown = false;
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
   };
-}]);
+});
 
 host.directive('modalDialog', function() {
   return {

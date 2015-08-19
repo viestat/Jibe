@@ -1,79 +1,78 @@
-angular.module('jibe.playlist', ['jibe.services'])
+var playlist = angular.module('jibe.playlist', ['jibe.services']);
 
-.config(['$sceDelegateProvider', function($sceDelegateProvider) {
-    // Whitelist YouTube uri's
-    $sceDelegateProvider.resourceUrlWhitelist([
-        'self',
-        'https://www.googleapis.com/youtube/v3/search?part=snippet&q=**',
-        'http://www.youtube.com/embed/**',
-    ]);
-}])
+playlist.config(['$sceDelegateProvider', function($sceDelegateProvider) {
+  // Whitelist YouTube uri's
+  $sceDelegateProvider.resourceUrlWhitelist([
+    'self',
+    'https://www.googleapis.com/youtube/v3/search?part=snippet&q=**',
+    'http://www.youtube.com/embed/**',
+  ]);
+}]);
 
-.controller('PlaylistCtrl', function PlaylistCtrl($scope, $window, $location, searchYouTube, playlistDatabase, songDatabase, $stateParams) {
+playlist.controller('PlaylistController', function ($scope, $window, $location, searchYouTube, playlistDatabase, songDatabase, $stateParams) {
 
-    // search functionality
-    $scope.modalShown = false;
-    $scope.toggleModal = function() {
-        $scope.modalShown = !$scope.modalShown;
-    };
+  // search functionality
+  $scope.modalShown = false;
 
+  $scope.toggleModal = function() {
+    $scope.modalShown = !$scope.modalShown;
+  };
 
-    // the results array that houses the songs currently in the queue
-    $scope.results = [];
-    $scope.result = [];
+  // the results array that houses the songs currently in the queue
+  $scope.results = [];
+  $scope.result = [];
 
-    $scope.getSongs = function(reqString) {
-        searchYouTube.getData(reqString).then(function(data) {
-                $scope.results = data;
-            })
-            .catch(function(err) {
-                console.error(err);
-            });
-    };
+  $scope.getSongs = function(reqString) {
+    searchYouTube.getData(reqString)
+      .then(function(data) {
+        $scope.results = data;
+      })
+      .catch(function(err) {
+        console.error(err);
+      });
+  };
 
-    // the data will also need to be added to the db
-    // we should probably not even have a $scope.results but actually just post this to the db via the server
-    // on success to posting to the db we should do a get request and update the users view
-
-
-    $scope.playList = [{
-        title: "Katy Perry - Unconditionally (Official)",
-        uri: "XjwZAa2EjKA",
-        $$hashKey: "object:22",
-        votes: 0,
-        id: '12345'
-    }];
-
-    $scope.selectSong = function(song) {
-        console.log(song)
-        playlistDatabase.addSong(song, $stateParams.playlistId).then(function(data) {
-            console.log(data);
-            $scope.playList = playlistDatabase.getQueue($stateParams.playlistId);
-
-        });
+  // the data will also need to be added to the db
+  // we should probably not even have a $scope.results but actually just post this to the db via the server
+  // on success to posting to the db we should do a get request and update the users view
 
 
-    };
+  $scope.playList = [{
+    title: "Katy Perry - Unconditionally (Official)",
+    uri: "XjwZAa2EjKA",
+    $$hashKey: "object:22",
+    votes: 0,
+    id: '12345'
+  }];
 
-    $scope.ended = function() {
-        console.log('ended from controller');
-    };
+  $scope.selectSong = function(song) {
+    // console.log(song);
+    playlistDatabase.addSong(song, $stateParams.playlistId)
+      .then(function(data) {
+        console.log(data);
+        $scope.playList = playlistDatabase.getQueue($stateParams.playlistId);
+      });
+  };
+
+  $scope.ended = function() {
+    console.log('ended from controller');
+  };
 
 
-    $scope.upVote = function(song) {
-        console.log('test');
-        songDatabase.upVote(song).then(function(data) {
-            console.log(data);
-        });
-    };
+  $scope.upVote = function(song) {
+    console.log('test');
+    songDatabase.upVote(song).then(function(data) {
+      console.log(data);
+    });
+  };
 
-    $scope.downVote = function(song) {
-        console.log('test');
-        songDatabase.upVote(song).then(function(data) {
-            console.log(data);
-        });
-    };
-})
+  $scope.downVote = function(song) {
+    console.log('test');
+    songDatabase.upVote(song).then(function(data) {
+      console.log(data);
+    });
+  };
+});
 
 
 // CONTROLLERS SHOULD POPULATE THE VIEW BASED ON THE FOLLOWING STRUCTURE
@@ -169,7 +168,7 @@ angular.module('jibe.playlist', ['jibe.services'])
 //     this.isExpanded  = !this.isExpanded;
 // };
 
-.controller("YouTubeCtrl", function($scope, YT_event) {
+playlist.controller("YouTubeCtrl", function($scope, YT_event) {
         //initial settings
         $scope.yt = {
             width: 600,

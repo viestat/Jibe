@@ -1,8 +1,24 @@
 var home = angular.module('jibe.home', []);
-
-home.controller('HomeController', function ($scope) {
+// ----------------------------------------------------
+// Angular controller for home page
+// ----------------------------------------------------
+home.controller('HomeController', function ($scope, HomeServices) {
 
   $scope.joinParty = function () {
-    console.log('joining party');
+    HomeServices.joinParty();
   };
+});
+
+// ----------------------------------------------------
+// Angular services for home page
+// ----------------------------------------------------
+home.factory('HomeServices', function ($location) {
+  var services = {};
+
+  services.joinParty = function () {
+    console.log('joining party');
+    $location.path('/portal');
+  };
+
+  return services;
 });

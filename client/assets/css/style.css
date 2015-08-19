@@ -63,6 +63,7 @@ a {
 body {
     color: #fff;
     background-color: #535181;
+    /*background-color: #313C74;*/
     margin: 0;
     padding:0;
     font-family: "Montserrat", Montserrat;
@@ -196,6 +197,7 @@ body {
     width: 100%;
     height:43px;
     background-color: #837FB9;
+    /*background-color: #7C84AE;*/
     z-index: 1;
 }
 
@@ -282,11 +284,13 @@ body {
 }
 
 .button {
-    width: 80%;
-    padding: 30px 0px;
-    text-align: center;
-    margin: 10px auto;
-    box-shadow: 1px;
+  width: 80%;
+  padding: 30px 0px;
+  text-align: center;
+  margin: 10px auto;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.5);
 }
 
 .dark-button{
@@ -865,7 +869,7 @@ body {
 .ng-modal-overlay {
   /* A dark translucent div that covers the whole screen */
   position:absolute;
-  z-index:9999;
+  /*z-index:9999;*/
   top:0;
   left:0;
   width:100%;
@@ -875,7 +879,7 @@ body {
 }
 .ng-modal-dialog {
   /* A centered div above the overlay with a box shadow. */
-  z-index:10000;
+  /*z-index:10000;*/
   position: absolute;
   width: 50%; /* Default */
 
@@ -920,7 +924,7 @@ body {
     top:0;
     left:0;
     background-color:rgba(255,255,255,0.95);
-    z-index:1000;
+    /*z-index:1000;*/
     color:#535181;
     font-family: "Montserrat", Montserrat;
 }
@@ -958,7 +962,7 @@ body {
 #overlay-source .overlay-content{width:75%;top:50%;left:12.5%;margin-top:-100px; }
 
 #overlay-source-search {
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
 #overlay-source-search .overlay-content {padding-top:10px;}
 #overlay-source-search .overlay-content{width:100%;top:100px;left:0;}
@@ -972,13 +976,21 @@ body {
     top:20px;
 }
 
-#overlay-source-search #search-form {display:block;position: relative;top:70px; width:100%; margin-bottom:100px;}
+#overlay-source-search #search-form {
+  display: block;
+  position: relative;
+  top: 70px; 
+  width: 100%; 
+  margin-bottom: 100px;
+}
 #overlay-source-search #search-form .input_text {-webkit-appearance: none; border-radius:0; background-color:#535181; border:none; width:100%; margin-right:70px;left:0; font-size:1em; padding:10px;}
 #overlay-source-search #search-form .input_submit {-webkit-appearance: none; border-radius:0;  position:absolute;border:none; width:60px; right:0;font-size:1em; padding:10px; top:0;}
-#overlay-source-search .song-container {position:relative;
+#overlay-source-search .song-container {
+  position:relative;
   border-bottom: 1px solid #343447;
   display:block;
-  min-height:80px;}
+  min-height:80px;
+}
 #overlay-source-search .song-container .small-artwork {left:40px; width:40px; height:40px;}
 #overlay-source-search .song-container .song-info {left:100px; width:50%;}
 
@@ -1126,4 +1138,20 @@ body {
 .score-col {
   width: 33%;
   min-width: 30px;
+}
+
+/*.enqueue-left {
+  width: 50%;
+  display: block;
+  float: left;
+}
+
+.enqueue-right {
+  width: 50%;
+  display: block;
+  float: right;
+}*/
+
+.enqueue-input {
+  color: #fff;
 }
