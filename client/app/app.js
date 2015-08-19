@@ -8,15 +8,19 @@ var app = angular.module('jibe', [
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/home');
 
   $stateProvider
     .state('home', {
       url: '/home',
       templateUrl: 'app/home/home.html'
     })
+    .state('guest', {
+      url: '/guest',
+      templateUrl: 'app/guest/guest.html'
+    })
     .state('host', {
-      url: '/host/:playlistId',
+      url: '/host',
       templateUrl: 'app/host/host.html',
       controller: 'PlaylistCtrl'
     });
@@ -30,10 +34,10 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
     //     controller: 'PlaylistCtrl'
     // })
     // .state('guest', {
+    //     url: '/playlist',
     //     templateUrl: 'app/playlist/playlist.html',
-    //     url: '/playlist/:playlistId',
     //     controller: 'PlaylistCtrl'
-    // })
+    // });
     // nested list with custom controller
     // .state('.search', {
     //     parent: 'guest',
