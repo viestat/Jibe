@@ -82,7 +82,8 @@
         scripts: {
           files: [
             'server/**/*.js',   // server files
-            'client/**/*.js'    // client files
+            'client/**/*.js',    // client files
+            '!client/dist/*.js'    // client files
           ],
           tasks: ['build']
         }

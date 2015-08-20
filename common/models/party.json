@@ -1,0 +1,26 @@
+{
+  "name": "party",
+  "plural": "parties",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "owner": {
+        "type": "string"
+      },
+      "playlist": {
+        "type": [
+          "any"
+        ],
+        "required": true
+      }
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
