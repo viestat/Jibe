@@ -11,7 +11,7 @@
           force: 'true',
           jshintrc: '.jshintrc',
           ignores: [
-            'client/lib/**/*.js'
+            'client/dist/**/*.js'
           ]
         }
       },
@@ -23,6 +23,31 @@
           },
           src: ['test/**/*.js']
         }
+      },
+      //-----------------------------------------------------
+      concat: {     // Join .js files
+        src: {      
+          src: 'client/app/**/*.js', // client angular files
+          dest: 'client/dist/src.js'
+        },
+        lib: {      
+          src: [  // sourced libraries
+            'client/lib/**/*.min.js',
+            'client/lib/underscore/underscore-min.js'
+          ], 
+          dest: 'client/dist/lib.min.js'
+        }
+      },
+      //-----------------------------------------------------
+      uglify: {     // Minify .js files
+        options: {
+            mangle: false
+          },
+          js_files: {
+            files: {
+              'client/dist/src.min.js': ['client/dist/src.js']
+            }
+          }
       },
       //-----------------------------------------------------
       nodemon: {    // Start server

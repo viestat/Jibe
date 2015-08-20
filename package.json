@@ -4,7 +4,8 @@
   "description": "add songs and rock the vote on music playlists",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "postinstall": "bash ./post_install.sh"
   },
   "author": "",
   "license": "ISC",
