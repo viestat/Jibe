@@ -5,7 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "postinstall": "bash ./post_install.sh"
+    "postinstall": "./post_install.sh"
   },
   "author": "",
   "license": "ISC",

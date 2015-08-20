@@ -11,6 +11,7 @@
           force: 'true',
           jshintrc: '.jshintrc',
           ignores: [
+            'client/lib/**/*.js',
             'client/dist/**/*.js'
           ]
         }
@@ -32,8 +33,15 @@
         },
         lib: {      
           src: [  // sourced libraries
-            'client/lib/**/*.min.js',
-            'client/lib/underscore/underscore-min.js'
+            'client/lib/jquery/dist/jquery.min.js',
+            'client/lib/angular/angular.min.js',
+            'client/lib/angular-ui-router/release/angular-ui-router.min.js',
+            'client/lib/bootstrap/dist/js/bootstrap.min.js',
+            'client/lib/underscore/underscore-min.js',
+            'client/lib/angular-ui-select/dist/select.min.js',
+            'client/lib/ng-table/dist/ng-table.min.js',
+            'client/lib/angular-sanitize/angular-sanitize.min.js'
+
           ], 
           dest: 'client/dist/lib.min.js'
         }
@@ -76,7 +84,7 @@
             'server/**/*.js',   // server files
             'client/**/*.js'    // client files
           ],
-          tasks: ['local']
+          tasks: ['build']
         }
       }
     });
@@ -116,8 +124,8 @@
       'test',
       'concat',
       'uglify',
-      'shell:delsrc',
-      'cssmin'
+      'shell:delsrc'//,
+      //'cssmin'
     ]);
 
     grunt.registerTask('deploy', [
