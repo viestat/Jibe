@@ -127,31 +127,31 @@ services.factory('playlistDatabase', function($http) {
 
 // })
 services.factory('songDatabase', function($http) {
-    var upVote = function(songId) {
-        return $http({
-            method: 'POST',
-            url: '/api/song/<upvote></upvote>',
-            data: {
-                songId: songId
-            },
-             accept: 'application/json'
-        });
-    };
+  var upVote = function(songId) {
+    return $http({
+      method: 'POST',
+      url: '/api/song/<upvote></upvote>',
+      data: {
+        songId: songId
+      },
+      accept: 'application/json'
+    });
+  };
 
-    var downVote = function(songId) {
-        console.log(songId);
-        return $http({
-            method: 'POST',
-            url: '/api/song/downvote',
-            data: {
-                songId: songId
-            },
-            accept: 'application/json'
-        });
-    };
+  var downVote = function(songId) {
+    console.log(songId);
+    return $http({
+      method: 'POST',
+      url: '/api/song/downvote',
+      data: {
+        songId: songId
+      },
+      accept: 'application/json'
+    });
+  };
 
-    return {
-        downVote: downVote,
-        upVote: upVote
-    };
+  return {
+    downVote: downVote,
+    upVote: upVote
+  };
 });

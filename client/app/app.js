@@ -3,7 +3,7 @@ var app = angular.module('jibe', [
   'jibe.host',
   'jibe.portal',
   'jibe.party',
-  // 'jibe.playlist',
+  'jibe.playlist',
   'jibe.enqueue',
   'jibe.services',
   'ngSanitize',
@@ -46,7 +46,7 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
       url: '/enqueue',
       templateUrl: 'app/enqueue/enqueue.html',
       controller: 'EnqueueController'
-    });
+    })
     // .state('login', {
     //     url: ''
     //     templateUrl: 'app/login/login.html',
@@ -56,11 +56,11 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
     //     url: '/host/:playlistId',
     //     controller: 'PlaylistCtrl'
     // })
-    // .state('guest', {
-    //     url: '/playlist',
-    //     templateUrl: 'app/playlist/playlist.html',
-    //     controller: 'PlaylistCtrl'
-    // });
+    .state('playlist', {
+        url: '/playlist',
+        templateUrl: 'app/playlist/playlist.html',
+        controller: 'PlaylistController'
+    });
     // nested list with custom controller
     // .state('.search', {
     //     parent: 'guest',

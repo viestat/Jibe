@@ -1,4 +1,4 @@
-var playlist = angular.module('jibe.playlist', ['jibe.services']);
+var playlist = angular.module('jibe.playlist', ['jibe.services', 'ngTable']);
 
 playlist.config(['$sceDelegateProvider', function($sceDelegateProvider) {
   // Whitelist YouTube uri's
@@ -10,18 +10,30 @@ playlist.config(['$sceDelegateProvider', function($sceDelegateProvider) {
 }]);
 
 playlist.controller('PlaylistController', function ($scope, $window, $location, searchYouTube, playlistDatabase, songDatabase, $stateParams) {
-
-  // search functionality
-  $scope.modalShown = false;
-
-  $scope.toggleModal = function() {
-    $scope.modalShown = !$scope.modalShown;
+  
+  $scope.$back = function() { 
+    window.history.back();
   };
+
+  // // search functionality
+  // $scope.modalShown = false;
+
+  // $scope.toggleModal = function() {
+  //   $scope.modalShown = !$scope.modalShown;
+  // };
 
   // the results array that houses the songs currently in the queue
   $scope.results = [];
   $scope.result = [];
 
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  * Author: Metallic Gazelle
+  * Edited by: Nate Meier
+  * Description: This function uses the searchYouTube factory to poll the 
+  *              YouTube API for videos that match the 'reqString'. It saves
+  *              the response in a $scope variable named results, which is 
+  *              used to render YouTube videos on the enqueue.html page.
+  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
   $scope.getSongs = function(reqString) {
     searchYouTube.getData(reqString)
       .then(function(data) {
@@ -35,13 +47,28 @@ playlist.controller('PlaylistController', function ($scope, $window, $location, 
   // the data will also need to be added to the db
   // we should probably not even have a $scope.results but actually just post this to the db via the server
   // on success to posting to the db we should do a get request and update the users view
-
-
-  $scope.playList = [{
-    title: "Katy Perry - Unconditionally (Official)",
+  $scope.playlist = [{
+    artist: "Katy Perry",
+    title: "Unconditionally",
     uri: "XjwZAa2EjKA",
     $$hashKey: "object:22",
     votes: 0,
+    id: '12345'
+  }, 
+  {
+    artist: "Rick Astley",
+    title: "Never Gonna Give You Up",
+    uri: "XjwZAa2EjKA",
+    $$hashKey: "object:21",
+    votes: 3,
+    id: '12345'
+  },
+  {
+    artist: "David Rosson",
+    title: "Argle My Bargle",
+    uri: "XjwZAa2EjKA",
+    $$hashKey: "object:20",
+    votes: 10,
     id: '12345'
   }];
 
@@ -50,7 +77,7 @@ playlist.controller('PlaylistController', function ($scope, $window, $location, 
     playlistDatabase.addSong(song, $stateParams.playlistId)
       .then(function(data) {
         console.log(data);
-        $scope.playList = playlistDatabase.getQueue($stateParams.playlistId);
+        $scope.playlist = playlistDatabase.getQueue($stateParams.playlistId);
       });
   };
 
@@ -60,21 +87,53 @@ playlist.controller('PlaylistController', function ($scope, $window, $location, 
 
 
   $scope.upVote = function(song) {
-    console.log('test');
-    songDatabase.upVote(song).then(function(data) {
-      console.log(data);
+    console.log('upvote test');
+    songDatabase.upVote(song)
+      .then(function(data) {
+        console.log(data);
     });
   };
 
   $scope.downVote = function(song) {
-    console.log('test');
-    songDatabase.upVote(song).then(function(data) {
-      console.log(data);
+    console.log('downvote test');
+    songDatabase.upVote(song)
+      .then(function(data) {
+        console.log(data);
     });
   };
 });
 
+// Author: Nate Meier
+// I copied this from services.js to lump concerns. 
+playlist.factory('songDatabase', function($http) {
+  var upVote = function(songId) {
+    return $http({
+      method: 'POST',
+      url: '/api/song/<upvote></upvote>',
+      data: {
+        songId: songId
+      },
+      accept: 'application/json'
+    });
+  };
 
+  var downVote = function(songId) {
+    console.log(songId);
+    return $http({
+      method: 'POST',
+      url: '/api/song/downvote',
+      data: {
+        songId: songId
+      },
+      accept: 'application/json'
+    });
+  };
+
+  return {
+    downVote: downVote,
+    upVote: upVote
+  };
+});
 // CONTROLLERS SHOULD POPULATE THE VIEW BASED ON THE FOLLOWING STRUCTURE
 
 // $scope.playlistName = 'Metallic Gazelle';
@@ -169,27 +228,28 @@ playlist.controller('PlaylistController', function ($scope, $window, $location, 
 // };
 
 playlist.controller("YouTubeCtrl", function($scope, YT_event) {
-        //initial settings
-        $scope.yt = {
-            width: 600,
-            height: 480,
-            videoid: "M7lc1UVf-VE",
-        };
-        $scope.$on(YT_event.STATUS_CHANGE, function(event, data) {
-            if (data === "ENDED") {
-                console.log('test!!!!')
-                newVideo = function() {
-                    $scope.yt = {
-                        width: 600,
-                        height: 480,
-                        videoid: 'kL1aqfnIr2Y'
-                    }
-                }()
-            }
-        });
+  //initial settings
+  $scope.yt = {
+      width: 600,
+      height: 480,
+      videoid: "M7lc1UVf-VE",
+  };
 
-    })
-    .directive('youtube', function($window, YT_event) {
+  $scope.$on(YT_event.STATUS_CHANGE, function(event, data) {
+    if (data === "ENDED") {
+      newVideo = function() {
+          $scope.yt = {
+              width: 600,
+              height: 480,
+              videoid: 'kL1aqfnIr2Y'
+          };
+      }();
+    }
+  });
+
+});
+
+playlist.directive('youtube', function($window, YT_event) {
         return {
             restrict: "E",
 
@@ -289,24 +349,24 @@ playlist.controller("YouTubeCtrl", function($scope, YT_event) {
         };
     })
 
-.directive('modalDialog', function() {
-    return {
-        restrict: 'E',
-        scope: {
-            show: '='
-        },
-        replace: true, // Replace with the template below
-        transclude: true, // we want to insert custom content inside the directive
-        link: function(scope, element, attrs) {
-            scope.dialogStyle = {};
-            if (attrs.width)
-                scope.dialogStyle.width = attrs.width;
-            if (attrs.height)
-                scope.dialogStyle.height = attrs.height;
-            scope.hideModal = function() {
-                scope.show = false;
-            };
-        },
-        template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
-    };
+playlist.directive('modalDialog', function() {
+  return {
+    restrict: 'E',
+    scope: {
+        show: '='
+    },
+    replace: true, // Replace with the template below
+    transclude: true, // we want to insert custom content inside the directive
+    link: function(scope, element, attrs) {
+      scope.dialogStyle = {};
+      if (attrs.width)
+        scope.dialogStyle.width = attrs.width;
+      if (attrs.height)
+        scope.dialogStyle.height = attrs.height;
+      scope.hideModal = function() {
+        scope.show = false;
+      };
+    },
+    template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
+  };
 });

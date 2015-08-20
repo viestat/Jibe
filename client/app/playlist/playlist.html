@@ -1,64 +1,100 @@
-<div class='container-fluid'>
-    <h1>#PartyRoom</h1>
-    <div >
+<div id="overlay-source-search" class="overlay" ng-controller="EnqueueController">
+  <a href="#/portal" id='search-close' class="collapse-button">
+    <i class="fa fa-minus"></i>
+  </a>
+
+  <div id="source-name">#{{party.name}} playlist</div>
+  
+
+  <div class='container-fluid'>
+    <!-- <h1>#PartyRoom Playlist</h1> -->
+<!--     <div>
         <iframe src="https://embed.spotify.com/?uri=spotify:track:4th1RQAelzqgY7wL53UGQt" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
-    </div>
-    <!-- <form name='searchForm' class='form-inline'>
+    </div> -->
+<!--      <form name='searchForm' class='form-inline'>
         <input type='text' class='form-control' ng-model='song' placeHolder='Select a song' update-search="getSong(song)">
     </form>
--->
+ -->
     <!-- search field -->
+
+    <!--
     <a ui-sref=".search"></a>
-           <ui-select ng-model='result.selected'  on-select='selectSong(result.selected)'  theme="bootstrap" ng-disabled="false" reset-search-input="false" uiSelectConfig.appendToBody = true; style="width: 300px;">
-           <ui-select-match placeholder="Enter a song...">{{$select.selected.song_name}}</ui-select-match>
-           <ui-select-choices repeat="result in results |limitTo:10" refresh="getSongs($select.search)" refresh-delay="0">
-               <div ng-bind-html="result.song_name + '-' + result.artists[0] |highlight: $select.search"></div>
-           </ui-select-choices>
+       <ui-select ng-model='result.selected'  on-select='selectSong(result.selected)'  theme="bootstrap" ng-disabled="false" reset-search-input="false" uiSelectConfig.appendToBody = true; style="width: 300px;">
+        <ui-select-match placeholder="Enter a song...">{{$select.selected.song_name}}</ui-select-match>
+        <ui-select-choices repeat="result in results |limitTo:10" refresh="getSongs($select.search)" refresh-delay="0">
+          <div ng-bind-html="result.song_name + '-' + result.artists[0] |highlight: $select.search"></div>
+        </ui-select-choices>
        </ui-select>
+    -->
 
     <!-- playlist -->
+    <!--
     <div class='panel panel-primary'>
-        <div class='panel-heading'>
-            <h3 class='panel-title'> Playlist</h3>
-        </div>
-        <ul class='panel body list-unstyled'>
-            <!-- 'this is where the playlist is' -->
-            <li ng-repeat="song in playList" class="row-fluid inline ">
-                <p>
-                    <div>{{song.name}} -{{song.artists[0]}} {{song.votes}}
-                        <span  ng-click='upVote()'class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                        <span ng-click='downVote()'class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                    </div>
-                </p>
-            </li>
-        </ul>
+      <div class='panel-heading'>
+        <h3 class='panel-title'> Playlist</h3>
+      </div>
+      
+      <ul class='panel body list-unstyled'>
+        <li ng-repeat="song in playlist" class="row-fluid inline">
+          <p>
+            <div>{{song.title}} - {{song.votes}}
+              <span ng-click='upVote()'class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              <span ng-click='downVote()'class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+            </div>
+          </p>
+        </li>
+      </ul>
     </div>
+    -->
+
+
+    <table ng-table class="playlist-table">
+      <tr ng-repeat="song in playlist">
+        <td class="score-col-playlist">
+          <div class="score-circle">{{song.votes}}</div>
+        </td>
+        <td class="song-col-playlist">
+          <div><small>{{song.artist}}</small></div>
+          <div><strong>{{song.title}}</strong></div>
+        </td>
+        <td class="button-col-playlist">    
+          <span ng-click='upVote()'class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </td>
+        <td class="button-col-playlist">  
+          <span ng-click='downVote()'class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+  <!--
+  <script>
+  $(document).ready(function () {
+
+      $("#share-open").click(function(){
+          $('#overlay-share').css('visibility','visible');
+      });
+
+      $("#share-close").click(function(){
+          $('#overlay-share').css('visibility','hidden');
+      });
+
+      (function ($) {
+
+          $('#filter').keyup(function () {
+
+              var rex = new RegExp($(this).val(), 'i');
+              $('.searchable tr').hide();
+              $('.searchable tr').filter(function () {
+                  return rex.test($(this).text());
+              }).show();
+
+          })
+
+      }(jQuery));
+
+  });
+  </script>
+  -->
 </div>
-
-<script>
-$(document).ready(function () {
-
-    $("#share-open").click(function(){
-        $('#overlay-share').css('visibility','visible');
-    });
-
-    $("#share-close").click(function(){
-        $('#overlay-share').css('visibility','hidden');
-    });
-
-    (function ($) {
-
-        $('#filter').keyup(function () {
-
-            var rex = new RegExp($(this).val(), 'i');
-            $('.searchable tr').hide();
-            $('.searchable tr').filter(function () {
-                return rex.test($(this).text());
-            }).show();
-
-        })
-
-    }(jQuery));
-
-});
-</script>
