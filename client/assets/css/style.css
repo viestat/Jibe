@@ -97,8 +97,8 @@ body {
     margin: auto;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
-    background:url("../img/jibe-logo.png") no-repeat center center;
-    background-size: 154px 75px;
+    background:url("../img/logo.png") no-repeat center center;
+    background-size: 40%;
 }
 
 .slogan {
@@ -213,8 +213,8 @@ body {
     left: 0;
     bottom: 0;
     right: 0;
-    background: url("../img/jibe-logo.png") no-repeat 40px center;
-    background-size: 45px 22px;
+    background: url("../img/logo.png") no-repeat 40px center;
+    background-size: 16%;
 }
 
 .nav-toggle{
