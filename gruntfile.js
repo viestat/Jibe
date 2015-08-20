@@ -103,6 +103,9 @@
         'test',
         'shell:installD'
       ]);
+    grunt.registerTask('default', [
+        'test'
+      ]);
 
     // grunt.registerTask('upload', function(n) {
     //   if(grunt.option('git')) {
