@@ -22,6 +22,7 @@
     "gulp-karma": "0.0.4",
     "gulp-nodemon": "^1.0.4",
     "gulp-shell": "^0.2.7",
+    "jshint": "^2.5.6",
     "jshint-stylish": "^0.2.0",
     "karma": "^0.12.16",
     "karma-chrome-launcher": "^0.1.4",
@@ -91,6 +92,16 @@
     "passport-local": "^1.0.0",
     "passport-spotify": "latest",
     "q": "^1.0.1",
-    "shortid": "^2.2.2"
+    "shortid": "^2.2.2",
+    "compression": "^1.0.3",
+    "cors": "^2.5.2",
+    "errorhandler": "^1.1.1",
+    "loopback": "^2.14.0",
+    "loopback-boot": "^2.6.5",
+    "loopback-datasource-juggler": "^2.19.0",
+    "serve-favicon": "^2.0.1"
+  }, 
+  "optionalDependencies": {
+    "loopback-explorer": "^1.1.0"
   }
 }
