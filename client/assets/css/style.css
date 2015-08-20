@@ -16,6 +16,11 @@ a {
     text-decoration: none;
     color: #EEEDFA;
 }
+
+a:hover
+{
+  text-decoration:none;
+}
 /*-------- FONTS -------*/
 
 @font-face {
