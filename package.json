@@ -7,6 +7,9 @@
     "start": "node server/server.js",
     "postinstall": "./post_install.sh"
   },
+  "engines": {
+    "node": "0.12.x"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
