@@ -5,7 +5,6 @@
 
 <div ng-controller="HostController">
 
-  <!-- <form name="party-setup"> -->
     <div class="button-container-host">
         <div class="start-button light-button button no-padding">
           <form name="name-party" ng-submit="nameParty(party.name)">
@@ -25,11 +24,10 @@
       </a>
 
       <a href="#/party" ng-click="startParty(party-name)">
-        <div class="start-button dark-button button">
+        <div class="start-button dark-button button" ng-click="startParty()">
           <span class="bold">START</span><span class="normal"> THE PARTY</span>
         </div>
       </a>
     </div>
-  <!-- </form> -->
 </div>
 

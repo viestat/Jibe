@@ -20,6 +20,7 @@ host.controller('HostController', function ($scope, $window, HostServices) {
   };
 
   $scope.startParty = function () {
+    console.log('Start party, controller.');
     HostServices.startParty();
   };
 
@@ -30,14 +31,23 @@ host.controller('HostController', function ($scope, $window, HostServices) {
   // };
 });
 
-host.factory('HostServices', function() {
-  var services = {};
+host.factory('HostServices', function ($http) {
 
-  services.startParty = function () {
+  var startParty = function () {
+    console.log('Start party, factory.');
 
+    return $http
+      .post('/api/startParty', $window.party.name)
+      .then( function (response) {
+        console.log('start party response:', response);
+      });
+    });
   };
 
-  return services;
+  return {
+    startParty: startParty
+  };
+
 });
 // I don't know what any of this does -- Nate Meier
 // host.directive('modalDialog', function() {

@@ -65,10 +65,14 @@ a:hover
     font-family: "Montserrat Light";
 }
 
+h3 {
+  margin-top: 10px;
+}
+
 body {
     color: #fff;
     /*background-color: #535181;*/
-    background-color: #B4CCA8;
+    background-color: #516F44;
     margin: 0;
     padding:0;
     font-family: "Montserrat", Montserrat;
@@ -81,7 +85,7 @@ body {
     top:0;
     height:64%;
     /*background-color: #535181;*/
-    background-color: #B4CCA8;
+    background-color: #516F44;
     text-transform: uppercase;
 }
 
@@ -92,7 +96,7 @@ body {
     top:0;
     height:80%;
     /*background-color: #535181;*/
-    background-color: #B4CCA8;
+    background-color: #516F44;
     text-transform: uppercase;
 }
 
@@ -162,7 +166,8 @@ body {
   top:64%;
   height:36%;
   /*background-color: #343447;*/
-  background-color: #828B6C;
+  padding:;
+  background-color: #424840;
   text-transform: uppercase;
   text-align:center;
   padding-bottom:60px;
@@ -304,7 +309,8 @@ body {
 
 .dark-button{
   /*background-color: #343447;*/
-  background-color: #828B6C;
+  /*padding:;*/
+  background-color: #424840;
   color: #EEEDFA;
 }
 
@@ -333,14 +339,16 @@ body {
 .light-button{
   background-color:  #EEEDFA;
   /*color: #343447;*/
-  color: #828B6C;
+  padding:;
+  color: #424840;
   margin-bottom: 40px;
 }
 
 .light-input{
   background-color:  #EEEDFA;
   /*color: #343447;*/
-  color: #828B6C;
+  padding:;
+  color: #424840;
   width: 100%;
   border: 0;
   text-align: center;
@@ -392,7 +400,7 @@ body {
     margin-left:30px;
     margin-top:-7px;
     /*background-color: #535181;*/
-    background-color: #B4CCA8;
+    background-color: #516F44;
     padding:0 10px;
 }
 
@@ -456,7 +464,7 @@ body {
 .next-up-header{
     background-color: #fff;
     /*color: #535181;*/
-    color: #B4CCA8;
+    color: #516F44;
     height: 30px;
 }
 
@@ -538,7 +546,7 @@ body {
 
 .collapse-button{
     color: #fff;
-    background-color: #535081 ;
+    background-color: #424840 ;
     float: right;
     width: 38px;
     height: 38px;
@@ -599,7 +607,7 @@ body {
     color: #fff;
     text-align: left;
     text-transform: uppercase;
-    border-top: 1px solid #535081;
+    border-top: 1px solid #424840;
 }
 
 .nominated-by-header span {
@@ -610,7 +618,8 @@ body {
   padding:0 10px;
   margin-top:-7px;
   /*background-color: #343447;*/
-  background-color: #828B6C;
+  padding:;
+  background-color: #424840;
 }
 
 .nominated-by-name{
@@ -641,7 +650,8 @@ body {
 
 .song-expanded-container{
   /*background-color: #343447;*/
-  background-color: #828B6C;
+  padding:;
+  background-color: #424840;
   border-bottom: 1px solid #343447;
   padding:10px 0 30px;
   position:relative;
@@ -698,7 +708,7 @@ body {
     color: #fff;
     text-align: left;
     text-transform: uppercase;
-    border-top: 1px solid #535081;
+    border-top: 1px solid #424840;
 }
 
 .whos-voting-by-header span {
@@ -709,7 +719,8 @@ body {
   padding:0 10px;
   margin-top:-7px;
   /*background-color: #343447;*/
-  background-color: #828B6C;
+  padding:;
+  background-color: #424840;
 }
 
 .whos-voting-by-name{
@@ -790,7 +801,7 @@ body {
 }
 .input-group{
   /*background-color: #535181;*/
-  background-color: #B4CCA8;
+  background-color: #516F44;
   width: 100%;
   height: 50px;
   position: relative;
@@ -799,7 +810,7 @@ body {
 #filter{
     width: 70%;
     /*background-color: #535181;*/
-    background-color: #B4CCA8;
+    background-color: #516F44;
     color: #EEEDFA;
     margin-left: 7%;
     border-style:none;
@@ -818,9 +829,16 @@ body {
     border-collapse:collapse;
     padding: 0;
     margin: 0;
-    border: 0 none;
 }
 
+.table > thead > tr > th, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > tbody > tr > td, 
+.table > tfoot > tr > td {
+  border: 0;
+}
 .search-header{
   background-color: #fff;
   padding-top: 1.3em;
@@ -829,7 +847,7 @@ body {
   border-color: transparent;
   outline: 0;
   /*color: #535181;*/
-  color: #B4CCA8;
+  color: #516F44;
 }
 
 .search-header-title{
@@ -844,9 +862,9 @@ body {
   /*color: #535181;
   border-bottom: 1px solid #535181;
   border-top: 1px solid #535181;*/
-  color: #B4CCA8;
-  border-bottom: 1px solid #B4CCA8;
-  border-top: 1px solid #B4CCA8;
+  color: #516F44;
+  border-bottom: 1px solid #516F44;
+  border-top: 1px solid #516F44;
 }
 
 .search-result-artwork{
@@ -859,7 +877,8 @@ body {
 .go-button{
   right: 0px;
   /*background-color: #343447;*/
-  background-color: #828B6C;
+  padding:;
+  background-color: #424840;
   height: 50px;
   width: 20%;
   position:absolute;
@@ -872,7 +891,8 @@ body {
 .add-button{
   float: right;
   /*background-color: #343447;*/
-  background-color: #828B6C;
+  padding:;
+  background-color: #424840;
   height: 30px;
   line-height: 30px;
   text-align: right;
@@ -933,7 +953,7 @@ body {
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
   /*color: #535181;*/
-  color: #B4CCA8;
+  color: #516F44;
 }
 
 .link-input{
@@ -951,7 +971,7 @@ body {
   background-color:rgba(255,255,255,0.95);
   /*z-index:1000;*/
   /*color: #535181;*/
-  color: #B4CCA8;
+  color: #516F44;
   font-family: "Montserrat", Montserrat;
 }
 
@@ -976,7 +996,7 @@ body {
     padding:20px 0;
     width: 100%;
     /*background-color: #535181;*/
-    background-color: #B4CCA8;
+    background-color: #516F44;
     margin-top:10px;
 }
 #overlay-share{
@@ -1014,7 +1034,7 @@ body {
   -webkit-appearance: none; 
   border-radius:0; 
   /*background-color: #535181;*/
-  background-color: #B4CCA8;
+  background-color: #516F44;
   border:none; 
   width:100%; 
   margin-right:70px;
@@ -1188,18 +1208,6 @@ body {
   min-width: 30px;
 }
 
-/*.enqueue-left {
-  width: 50%;
-  display: block;
-  float: left;
-}
-
-.enqueue-right {
-  width: 50%;
-  display: block;
-  float: right;
-}*/
-
 .enqueue-input {
   color: #fff;
 }
@@ -1207,10 +1215,10 @@ body {
 .playlist-table {
   width: 100%;
   /*color: #535181;*/
-  color: #B4CCA8;
+  color: #516F44;
   margin-top: 100px;
   font-size: 12pt;
-  padding: 10px;
+  padding: 6px;
 }
 
 .song-col-playlist {
@@ -1229,7 +1237,7 @@ body {
 
 .score-circle {
   /*background-color: #535181;*/
-  background-color: #B4CCA8;  
+  background-color: #516F44;  
   color: #fff;
   width: 30px;
   height: 30px;
@@ -1244,4 +1252,8 @@ body {
   text-align: center;
   margin: auto;
   margin-top: 70px;
+}
+
+.fa-sign-out:hover {
+  text-decoration: none;
 }
