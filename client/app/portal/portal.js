@@ -1,4 +1,4 @@
-var portal = angular.module('jibe.portal', ['jibe.enqueue']);
+var portal = angular.module('grizzly.portal', ['grizzly.enqueue']);
 
 portal.controller('PortalController', function ($scope) {
   $scope.modalShown = false;

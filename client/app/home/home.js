@@ -1,4 +1,4 @@
-var home = angular.module('jibe.home', []);
+var home = angular.module('grizzly.home', []);
 // ----------------------------------------------------
 // Angular controller for home page
 // ----------------------------------------------------

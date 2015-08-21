@@ -5,16 +5,19 @@
 
 <div ng-controller="HostController">
 
-  <div class="party-name">
-    <h1>partyName</h1>
-  </div> 
-  
-  <form name="party-setup">
+  <!-- <form name="party-setup"> -->
     <div class="button-container-host">
-      <div class="start-button light-button button no-padding">
-        <input class="light-input normal" placeholder="ENTER PARTY NAME" ng-model="party.name" name="party-name"> </input>
-      </div>
-
+        <div class="start-button light-button button no-padding">
+          <form name="name-party" ng-submit="nameParty(party.name)">
+            <input class="light-input normal" 
+                   placeholder="ENTER PARTY NAME" 
+                   ng-model="party.name" 
+                   name="party-name"
+                   ng-maxlength="25"
+                   maxlength="25"
+                   ng-disabled="party.isDisabled || disabled"> </input>
+          </form>
+        </div>
       <a href="#/enqueue">
         <div class="start-button dark-button button">
           <span class="bold">ADD</span><span class="normal"> SONGS TO QUEUE</span>
@@ -27,6 +30,6 @@
         </div>
       </a>
     </div>
-  </form>
+  <!-- </form> -->
 </div>
 
