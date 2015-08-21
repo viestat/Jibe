@@ -1,22 +1,41 @@
-var loopback = require('loopback');
-var boot = require('loopback-boot');
+var express  = require('express'),
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    morgan   = require('morgan'),
+    configDB = require('./config/database.js');
 
-var app = module.exports = loopback();
+// connect to mongo database named soundsource
+//mongoose.connect('mongodb://127.0.0.1:27017/jibe');
+mongoose.connect(configDB.url);
 
-app.start = function() {
-  // start the web server
-  return app.listen(function() {
-    app.emit('started');
-    console.log('Web server listening at: %s', app.get('url'));
-  });
-};
-
-// Bootstrap the application, configure models, datasources and middleware.
-// Sub-apps like REST API are mounted via boot scripts.
-boot(app, __dirname, function(err) {
-  if (err) throw err;
-
-  // start the server if `$ node server.js`
-  if (require.main === module)
-    app.start();
+mongoose.connection.once('connected', function() {
+  console.log('Connected to database!');
 });
+
+// set the port
+var port = process.env.PORT || 8080;
+
+var app = express();
+
+// configure our server with all the middleware and and routing
+require('./config/middleware.js')(app, express);
+// require('./config/passport')(passport); // pass passport for configuration
+
+//========================
+// start app
+//========================
+
+// Author: Nate Meier
+// Description: Serves app home page; angular takes care of all routing 
+app.get('/', function (req, res) {
+  res.sendfile('./client/index.html');
+});
+
+// startup our app at http://localhost:8080
+app.listen(port);
+
+// shoutout
+console.log('Server magic happens on port ' + port);
+
+// export our app for testing and flexibility, required by app.js
+module.exports = app;
