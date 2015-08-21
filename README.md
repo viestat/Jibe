@@ -1,6 +1,16 @@
-# Project Name
+# Grizzly
 
 An app that allows you to crowd source a music video playlist.
+
+
+## Table of Contents
+
+1. [Team](#team)
+2. [Usage](#Usage)
+3. [Requirements](#requirements)
+4. [Development](#development)
+    1. [Installing Dependencies](#installing-dependencies)
+5. [Roadmap](#roadmap)
 
 ## Team
 
@@ -8,45 +18,25 @@ An app that allows you to crowd source a music video playlist.
   - __Scrum Master__: Michael Kurrels
   - __Development Team Members__: Steven Wu, Nate Meier
 
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
-
 ## Usage
 
-> Some usage instructions
+Users join a party with a party code. 
+They can search YouTube for videos and add them to the party playlist.
+All users can vote on songs that have been added to the playlist.
+This affects the order of the songs in the playlist.
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+Refer to `package.json` and `bower.json`.
 
 ## Development
 
 ### Installing Dependencies
 
-From within the root directory:
-
-```sh
-sudo npm install -g bower
-npm install
-bower install
-```
+1. `npm install`
+2. `bower install`
+3. `grunt server-dev`
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+View the project roadmap on waffle.io [here](https://waffle.io/viridescentgrizzly/grizzly).
