@@ -17,7 +17,8 @@ var partySchema = mongoose.Schema ({
 var songSchema = mongoose.Schema ({
   videoId: { type: String, index: { unique: true } },
   title: String,
-  score: Number
+  score: Number,
+  played: { type: Boolean , default: false }
 });
 
 var Party = mongoose.model('Party', partySchema);
