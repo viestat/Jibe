@@ -4,17 +4,18 @@ var bodyParser = require('body-parser');
 var request = require('request');
 
 var Party = require('./db-config.js');
+var Song = require('./db-config.js');
 
 exports.getPlaylist = function (req, res) {
-  console.log('Get playlist.')
+  console.log('Get playlist.');
 
 };
 
 exports.createParty = function (req, res) {
-  console.log('Create party.')
+  console.log('Create party.');
   // Party name
   var name = req.body.name;
-  var owner = req.body.owner || "anonymous";
+  var owner = req.body.owner || 'anonymous';
 
   Party.findOne({ name: name })
     .exec(function(err, party) {
@@ -42,7 +43,7 @@ exports.createParty = function (req, res) {
 };
 
 exports.joinParty = function (req, res) {
-  console.log('Join party.')
+  console.log('Join party.');
   // Party name
   var name = req.body.name;
 
@@ -61,7 +62,7 @@ exports.joinParty = function (req, res) {
 };
 
 exports.addSong = function (req, res) {
-  console.log('Add song to db.')
+  console.log('Add song to db.');
   // Song parameters
   var title = req.body.title;
   var videoId = req.body.videoId;
@@ -93,17 +94,17 @@ exports.addSong = function (req, res) {
 };
 
 exports.upvote = function (req, res) {
-  console.log('Upvote song.')
+  console.log('Upvote song.');
 
 };
 
 exports.downvote = function (req, res) {
-  console.log('Downvote song.')
+  console.log('Downvote song.');
 
 };
 
 
-/*
+/* COPIED FROM BEER TAB
 var bodyParser = require('body-parser');
 var request = require('request');
 var jwt = require('jwt-simple');

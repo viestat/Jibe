@@ -48,26 +48,26 @@ playlist.controller('PlaylistController', function ($scope, $window, $location, 
   // we should probably not even have a $scope.results but actually just post this to the db via the server
   // on success to posting to the db we should do a get request and update the users view
   $scope.playlist = [{
-    artist: "Katy Perry",
-    title: "Unconditionally",
-    uri: "XjwZAa2EjKA",
-    $$hashKey: "object:22",
+    artist: 'Katy Perry',
+    title: 'Unconditionally',
+    uri: 'XjwZAa2EjKA',
+    $$hashKey: 'object:22',
     votes: 0,
     id: '12345'
   }, 
   {
-    artist: "Rick Astley",
-    title: "Never Gonna Give You Up",
-    uri: "XjwZAa2EjKA",
-    $$hashKey: "object:21",
+    artist: 'Rick Astley',
+    title: 'Never Gonna Give You Up',
+    uri: 'XjwZAa2EjKA',
+    $$hashKey: 'object:21',
     votes: 3,
     id: '12345'
   },
   {
-    artist: "David Rosson",
-    title: "Argle My Bargle",
-    uri: "XjwZAa2EjKA",
-    $$hashKey: "object:20",
+    artist: 'David Rosson',
+    title: 'Argle My Bargle',
+    uri: 'XjwZAa2EjKA',
+    $$hashKey: 'object:20',
     votes: 10,
     id: '12345'
   }];
@@ -143,17 +143,17 @@ playlist.factory('songDatabase', function($http) {
 //     artist: 'Janet Jackson featuring Susan Sarandon',
 //     upvotes: 101,
 //     downvotes: 35,
-//     artwork: "assets/img/now-playing-img.jpg"
+//     artwork: 'assets/img/now-playing-img.jpg'
 // };
 
 // $scope.queue = [
 //     {
-//         name: "Haunted",
-//         artist: "Beyonce",
+//         name: 'Haunted',
+//         artist: 'Beyonce',
 //         upvotes: 14,
 //         downvotes: 80,
-//         artwork: "assets/img/now-playing-img.jpg",
-//         nominatedBy: "Susan Sarandon",
+//         artwork: 'assets/img/now-playing-img.jpg',
+//         nominatedBy: 'Susan Sarandon',
 //         isCollapsed: true,
 //         upvoters:[
 //             {
@@ -209,12 +209,12 @@ playlist.factory('songDatabase', function($http) {
 //         ]
 //     },
 //     {
-//         name: "Hang With Me",
-//         artist: "Robyn",
+//         name: 'Hang With Me',
+//         artist: 'Robyn',
 //         upvotes: 20,
 //         downvotes: 300,
-//         artwork: "assets/img/expanded-artwork-img.jpg",
-//         nominatedBy: "Ben Biran",
+//         artwork: 'assets/img/expanded-artwork-img.jpg',
+//         nominatedBy: 'Ben Biran',
 //         isCollapsed: true,
 //         upvoters:[],
 //         downvoters:[]
@@ -227,16 +227,16 @@ playlist.factory('songDatabase', function($http) {
 //     this.isExpanded  = !this.isExpanded;
 // };
 
-playlist.controller("YouTubeCtrl", function($scope, YT_event) {
+playlist.controller('YouTubeCtrl', function($scope, YT_event) {
   //initial settings
   $scope.yt = {
       width: 600,
       height: 480,
-      videoid: "M7lc1UVf-VE",
+      videoid: 'M7lc1UVf-VE',
   };
 
   $scope.$on(YT_event.STATUS_CHANGE, function(event, data) {
-    if (data === "ENDED") {
+    if (data === 'ENDED') {
       newVideo = function() {
           $scope.yt = {
               width: 600,
@@ -251,19 +251,19 @@ playlist.controller("YouTubeCtrl", function($scope, YT_event) {
 
 playlist.directive('youtube', function($window, YT_event) {
         return {
-            restrict: "E",
+            restrict: 'E',
 
             scope: {
-                height: "@",
-                width: "@",
-                videoid: "@"
+                height: '@',
+                width: '@',
+                videoid: '@'
             },
 
             template: '<div></div>',
 
             link: function(scope, element) {
                 var tag = document.createElement('script');
-                tag.src = "https://www.youtube.com/iframe_api";
+                tag.src = 'https://www.youtube.com/iframe_api';
                 var firstScriptTag = document.getElementsByTagName('script')[0];
                 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
@@ -275,9 +275,9 @@ playlist.directive('youtube', function($window, YT_event) {
                         playerVars: {
                             autoplay: 1,
                             html5: 1,
-                            theme: "light",
+                            theme: 'light',
                             modesbranding: 0,
-                            color: "white",
+                            color: 'white',
                             iv_load_policy: 3,
                             showinfo: 1,
                             controls: 1
@@ -288,23 +288,23 @@ playlist.directive('youtube', function($window, YT_event) {
                         videoId: scope.videoid,
                         events: {
                             onStateChange: function(event) {
-                                console.log("STATUS CHANGED. New status: " + event.data);
+                                console.log('STATUS CHANGED. New status: ' + event.data);
                                 var message = {
                                     event: YT_event.STATUS_CHANGE,
-                                    data: ""
+                                    data: ''
                                 };
                                 switch (event.data) {
                                     case YT.PlayerState.PLAYING:
-                                        message.data = "PLAYING";
+                                        message.data = 'PLAYING';
                                         break;
                                     case YT.PlayerState.ENDED:
-                                        message.data = "ENDED";
+                                        message.data = 'ENDED';
                                         break;
                                     case YT.PlayerState.UNSTARTED:
-                                        message.data = "NOT PLAYING";
+                                        message.data = 'NOT PLAYING';
                                         break;
                                     case YT.PlayerState.PAUSED:
-                                        message.data = "PAUSED";
+                                        message.data = 'PAUSED';
                                         break;
                                 };
                                 scope.$apply(function() {

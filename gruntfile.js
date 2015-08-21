@@ -12,7 +12,10 @@
           jshintrc: '.jshintrc',
           ignores: [
             'client/lib/**/*.js',
-            'client/dist/**/*.js'
+            'client/dist/**/*.js',
+            'server/playlists/**/*',
+            'server/songs/**/*',
+            'server/users/**/*'
           ]
         }
       },
