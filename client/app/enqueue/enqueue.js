@@ -1,6 +1,6 @@
 var enqueue = angular.module('grizzly.enqueue', ['ngTable', 'grizzly.services']);
 
-enqueue.controller('EnqueueController', function ($scope, searchYouTube) {
+enqueue.controller('EnqueueController', function ($scope, searchYouTube, addToQueue) {
 
   // the results array that houses the songs currently in the queue
   $scope.results = [];
@@ -20,7 +20,16 @@ enqueue.controller('EnqueueController', function ($scope, searchYouTube) {
   };
 
   $scope.addSong = function(song){
-    console.log(song);
+    //song lokks like this: {
+    //  title: "Nujabes - The Final View", 
+    //  uri: "36F9LKMDaOY", 
+    //  $$hashKey: "object:250"
+    // }
+
+    addToQueue.sendSong(song);
+
+
+
   };
 
 
@@ -77,6 +86,15 @@ enqueue.factory('searchYouTube', function ($http) {
   };
 });
 
-// enqueue.factory('addToQueue', function(song){
+enqueue.factory('addToQueue', function($http){
+  var sendSong = function(song){
+    return $http({
+      method: 'POST',
+      url: '/api/addSong',
+      data: song
+    });
+  };
 
-// });
+  return {sendSong: sendSong}
+
+});
