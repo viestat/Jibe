@@ -31,16 +31,15 @@ host.controller('HostController', function ($scope, $window, HostServices) {
   // };
 });
 
-host.factory('HostServices', function ($http) {
+host.factory('HostServices', function ($http, $window) {
 
   var startParty = function () {
     console.log('Start party, factory.');
 
-    return $http
-      .post('/api/startParty', $window.party.name)
-      .then( function (response) {
-        console.log('start party response:', response);
-      });
+    return $http({
+      method: 'POST',
+      url: '/api/startParty',
+      data: $window.party.name
     });
   };
 
