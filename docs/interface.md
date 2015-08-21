@@ -10,7 +10,7 @@ client sends Post to '/addSong':
 client sends Get to '/queue':
   data: 'partyString'
 
-server responds to Get request to '/queue' with:
+server responds to Get request to '/playlist' with:
   data: [{song}, {song}, {song}]
 
 client sends Post to '/vote':
