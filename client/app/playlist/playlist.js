@@ -9,7 +9,7 @@ playlist.config(['$sceDelegateProvider', function($sceDelegateProvider) {
   ]);
 }]);
 
-playlist.controller('PlaylistController', function ($scope, $window, $location, searchYouTube, playlistDatabase, songDatabase, $stateParams) {
+playlist.controller('PlaylistController', function ($scope, $window, $location, searchYouTube, playlistDatabase, videoVoting, $stateParams) {
   
   $scope.$back = function() { 
     window.history.back();
@@ -85,7 +85,8 @@ playlist.controller('PlaylistController', function ($scope, $window, $location, 
     console.log('ended from controller');
   };
 
-
+  // Author: Nate Meier
+  // Description: Used to upvote a song in the playlist
   $scope.upVote = function(song) {
     console.log('upvote test');
     songDatabase.upVote(song)
@@ -94,6 +95,8 @@ playlist.controller('PlaylistController', function ($scope, $window, $location, 
     });
   };
 
+  // Author: Nate Meier
+  // Description: Used to downvote a song in the playlist
   $scope.downVote = function(song) {
     console.log('downvote test');
     songDatabase.upVote(song)
@@ -103,27 +106,29 @@ playlist.controller('PlaylistController', function ($scope, $window, $location, 
   };
 });
 
+// ----------------------------------------------------------------------------
+
 // Author: Nate Meier
 // I copied this from services.js to lump concerns. 
-playlist.factory('songDatabase', function($http) {
-  var upVote = function(songId) {
+playlist.factory('videoVoting', function($http) {
+  var upVote = function(videoId) {
     return $http({
       method: 'POST',
-      url: '/api/song/<upvote></upvote>',
+      url: '/api/upvote',
       data: {
-        songId: songId
+        videoId: videoId
       },
       accept: 'application/json'
     });
   };
 
-  var downVote = function(songId) {
-    console.log(songId);
+  var downVote = function(videoId) {
+    console.log(videoId);
     return $http({
       method: 'POST',
-      url: '/api/song/downvote',
+      url: '/api/downvote',
       data: {
-        songId: songId
+        videoId: videoId
       },
       accept: 'application/json'
     });
@@ -227,6 +232,10 @@ playlist.factory('songDatabase', function($http) {
 //     this.isExpanded  = !this.isExpanded;
 // };
 
+// ----------------------------------------------------------------------------
+// Comment by Nate Meier
+// I have no idea what any of this stuff does. We'll have to comb through it.
+
 playlist.controller('YouTubeCtrl', function($scope, YT_event) {
   //initial settings
   $scope.yt = {
@@ -306,14 +315,14 @@ playlist.directive('youtube', function($window, YT_event) {
                                     case YT.PlayerState.PAUSED:
                                         message.data = 'PAUSED';
                                         break;
-                                };
+                                }
                                 scope.$apply(function() {
                                     scope.$emit(message.event, message.data);
                                 });
                             }
                         }
                     });
-                }
+                };
 
                 scope.$watch('videoid', function(newValue, oldValue) {
                     if (newValue == oldValue) {
@@ -347,8 +356,10 @@ playlist.directive('youtube', function($window, YT_event) {
             }
 
         };
-    })
+    });
 
+// We can probably delete this. We don't use it, and I think they meant "model."
+// Every time I like at it I think of German. I kann nicht verstehen.
 playlist.directive('modalDialog', function() {
   return {
     restrict: 'E',
@@ -359,10 +370,12 @@ playlist.directive('modalDialog', function() {
     transclude: true, // we want to insert custom content inside the directive
     link: function(scope, element, attrs) {
       scope.dialogStyle = {};
-      if (attrs.width)
+      if (attrs.width) {
         scope.dialogStyle.width = attrs.width;
-      if (attrs.height)
+      }
+      if (attrs.height) {
         scope.dialogStyle.height = attrs.height;
+      }
       scope.hideModal = function() {
         scope.show = false;
       };
