@@ -1,4 +1,4 @@
-var playlist = angular.module('jibe.playlist', ['jibe.services', 'ngTable']);
+var playlist = angular.module('grizzly.playlist', ['grizzly.services', 'ngTable']);
 
 playlist.config(['$sceDelegateProvider', function($sceDelegateProvider) {
   // Whitelist YouTube uri's
@@ -137,7 +137,7 @@ playlist.factory('songDatabase', function($http) {
 // CONTROLLERS SHOULD POPULATE THE VIEW BASED ON THE FOLLOWING STRUCTURE
 
 // $scope.playlistName = 'Metallic Gazelle';
-// $scope.playlistLink = 'https://jibe.io/smitten-kitten';
+// $scope.playlistLink = 'https://grizzly.io/smitten-kitten';
 // $scope.currentSong = {
 //     name: 'No Sleep',
 //     artist: 'Janet Jackson featuring Susan Sarandon',

@@ -1,7 +1,7 @@
 {
-  "name": "jibe",
+  "name": "grizzly",
   "version": "1.0.0",
-  "description": "add songs and rock the vote on music playlists",
+  "description": "An app that allows you to crowd source a music video playlist",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",

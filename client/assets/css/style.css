@@ -344,7 +344,7 @@ body {
   width: 100%;
   border: 0;
   text-align: center;
-  font-size: 14pt;
+  font-size: 18pt;
   padding: 30px;
 }
 
@@ -1238,4 +1238,10 @@ body {
   -moz-border-radius:50%;
   -webkit-border-radius: 50%;
   border-radius:50%; 
+}
+
+.party-name {
+  text-align: center;
+  margin: auto;
+  margin-top: 70px;
 }

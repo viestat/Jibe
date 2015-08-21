@@ -1,4 +1,4 @@
-var enqueue = angular.module('jibe.enqueue', ['ngTable', 'jibe.services']);
+var enqueue = angular.module('grizzly.enqueue', ['ngTable', 'grizzly.services']);
 
 enqueue.controller('EnqueueController', function ($scope, searchYouTube) {
 

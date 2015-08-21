@@ -1,4 +1,4 @@
-var party = angular.module('jibe.party', ['ngTable']);
+var party = angular.module('grizzly.party', ['ngTable']);
 
 party.controller('PartyController', function ($scope, $location) {
 

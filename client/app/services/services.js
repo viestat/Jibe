@@ -1,4 +1,4 @@
-var services = angular.module('jibe.services', []);
+var services = angular.module('grizzly.services', []);
 
 /* I moved all of this functionality to enqueue.js -> Isolating concerns!
 

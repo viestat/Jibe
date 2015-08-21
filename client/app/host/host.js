@@ -1,8 +1,19 @@
-var host = angular.module('jibe.host', []);
+var host = angular.module('grizzly.host', []);
 
 host.controller('HostController', function ($scope) {
   
-  $scope.partyName = 'default';
+  $scope.party = {
+    name: window.party.name,
+    isDisabled: window.party.isDisabled
+  }
+  $scope.disabled = false;
+
+  $scope.nameParty = function (name) {
+    console.log('naming party:', name);
+    $scope.disabled = true;
+    window.party.name = name;
+    window.party.isDisabled = true;
+  };
 
   // I don't know what this does -- Nate Meier
   // $scope.modalShown = false;
