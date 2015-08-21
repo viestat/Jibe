@@ -98,7 +98,7 @@ body {
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
     background:url("../img/logo.png") no-repeat center center;
-    background-size: 40%;
+    background-size: 210px;
 }
 
 .slogan {
@@ -204,8 +204,8 @@ body {
 .nav-logo{
     float:left;
     width: 50%;
-    height: 40px;
-    padding-top: 20px;
+    /*height: 40px;*/
+    padding-top: 25px;
     padding-bottom: 20px;
     margin: auto;
     display: inline-block;
@@ -214,7 +214,7 @@ body {
     bottom: 0;
     right: 0;
     background: url("../img/logo.png") no-repeat 40px center;
-    background-size: 16%;
+    background-size: 100px;
 }
 
 .nav-toggle{
