@@ -18,7 +18,12 @@ enqueue.controller('EnqueueController', function ($scope, searchYouTube) {
         console.error(err);
       });
   };
-  
+
+  $scope.addSong = function(song){
+    console.log(song);
+  };
+
+
   console.log($scope.results);
 
 });
@@ -71,3 +76,7 @@ enqueue.factory('searchYouTube', function ($http) {
     getData: getData,
   };
 });
+
+// enqueue.factory('addToQueue', function(song){
+
+// });
