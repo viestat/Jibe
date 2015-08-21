@@ -64,33 +64,48 @@ exports.joinParty = function (req, res) {
 exports.addSong = function (req, res) {
   console.log('Add song to db.');
   // Song parameters
+  var party = req.body.party; //<------ need to figure out how this is sended
   var title = req.body.title;
   var videoId = req.body.videoId;
   var score = 0;
 
-  Song.findOne({ title: title })
-    .exec(function(err, song) {
-      if (!song) {
-        var newSong = new Song({
-          title: title,
-          videoId: videoId,
-          score: score
-        });
-
-        newSong.save(function(err, newSong) {
-          if (err) {
-            console.log('Error: cannot add song to database.');
-            res.status(418).end();
-          } else {
-            console.log('Success: song added to database.');
-            res.status(201).end();
-          }
-        });
-      } else {
-        console.log('Error: song already exists in database.');
+  //finds if the party is alredy in the database
+  Party.findOne({ name: party})
+    .exec(function(err, party){
+      if(!party){
+        console.log('Error: party was not found.');
         res.status(418).end();
+      } else {
+        //looks for the song in the database
+        Song.findOne({ title: title })
+          .exec(function(err, song) {
+            if (!song) {
+              var newSong = new Song({
+                title: title,
+                videoId: videoId,
+                score: score
+              });
+
+              newSong.save(function(err, newSong) {
+                if (err) {
+                  console.log('Error: cannot add song to database.');
+                  res.status(418).end();
+                } else {
+                  //add the song to the end of the playlist array inside party
+                  party.playlist.push(newSong);
+                  console.log('Success: song added to database.');
+                  res.status(201).end();
+                }
+              });
+            } else {
+              console.log('Error: song already exists in database.');
+              res.status(418).end();
+            }
+          });
+        
       }
     });
+
 };
 
 exports.upvote = function (req, res) {
