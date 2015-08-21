@@ -1,6 +1,6 @@
 var enqueue = angular.module('grizzly.enqueue', ['ngTable', 'grizzly.services']);
 
-enqueue.controller('EnqueueController', function ($scope, searchYouTube) {
+enqueue.controller('EnqueueController', function ($scope, $window, searchYouTube, addToQueue) {
 
   // the results array that houses the songs currently in the queue
   $scope.results = [];
@@ -18,7 +18,18 @@ enqueue.controller('EnqueueController', function ($scope, searchYouTube) {
         console.error(err);
       });
   };
-  
+
+  $scope.addSong = function(song){
+    //song lokks like this: {
+    //  title: "Nujabes - The Final View", 
+    //  uri: "36F9LKMDaOY", 
+    //  $$hashKey: "object:250"
+    // }
+    song.party = $window.localStorage.party;
+    addToQueue.sendSong(song);
+  };
+
+
   console.log($scope.results);
 
 });
@@ -70,4 +81,17 @@ enqueue.factory('searchYouTube', function ($http) {
   return {
     getData: getData,
   };
+});
+
+enqueue.factory('addToQueue', function($http){
+  var sendSong = function(song){
+    return $http({
+      method: 'POST',
+      url: '/api/addSong',
+      data: song
+    });
+  };
+
+  return {sendSong: sendSong}
+
 });

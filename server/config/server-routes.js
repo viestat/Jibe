@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var request = require('request');
 
 var Party = require('./db-config.js');
-var Song = require('./db-config.js');
+// var Song = require('./db-config.js');
 
 exports.getPlaylist = function (req, res) {
   console.log('Get playlist.');
@@ -64,34 +64,34 @@ exports.joinParty = function (req, res) {
 exports.addSong = function (req, res) {
   console.log('Add song to db.');
   // Song parameters
-  var title = req.body.title;
-  var videoId = req.body.videoId;
-  var score = 0;
+  var song = {
+    party: req.body.party,
+    title: req.body.title,
+    uri: req.body.uri,
+    score: req.body.score
+  }
 
-  Song.findOne({ title: title })
-    .exec(function(err, song) {
-      if (!song) {
-        var newSong = new Song({
-          title: title,
-          videoId: videoId,
-          score: score
-        });
+  //finds if the party is alredy in the database
+  Party.findOne({ name: song.party})
+    .exec(function(err, party){
+      if(!party){
+        console.log('Error: party was not found.');
+        res.status(418).end();
+      } else {
+        party.playlist.push(song);
 
-        newSong.save(function(err, newSong) {
-          if (err) {
-            console.log('Error: cannot add song to database.');
-            res.status(418).end();
+        Party.update({_id: party._id}, {$set: {playlist: party.playlist}}, function(err){
+          if (err){
+            return err;
           } else {
-            console.log('Success: song added to database.');
-            res.status(201).end();
+            console.log('Success: party was updated.');
           }
         });
-      } else {
-        console.log('Error: song already exists in database.');
-        res.status(418).end();
+        res.status(201).end();
       }
     });
-};
+  }
+
 
 exports.upvote = function (req, res) {
   console.log('Upvote song.');
