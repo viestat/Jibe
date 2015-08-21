@@ -1,19 +1,21 @@
 var services = angular.module('jibe.services', []);
 
+/* I moved all of this functionality to enqueue.js -> Isolating concerns!
+
 services.factory('searchYouTube', function ($http) {
   // this is our factory function for getting data from youtube, this will be run when we type in the search field
   var getData = function(data) {
 
   // Take user submitted search string from input field, split
   // into separate words and rejoin w/ proper delimiter
-  var searchTerms = data.split(" ");
-  var searchQuery = searchTerms.join("+");
+  var searchTerms = data.split(' ');
+  var searchQuery = searchTerms.join('+');
 
   // Base url plus search query start, search query will be added on to this
-  var base_url = "https://api.spotify.com/v1/search?q=";
+  var base_url = 'https://api.spotify.com/v1/search?q=';
   // Since we will always be using the same type filter, market filter, and
   // search result limit, can combine all into one suffix url
-  var url_suffix = "&type=track&market=US&limit=10";
+  var url_suffix = '&type=track&market=US&limit=10';
 
   // Combine base, search, and suffix into complete search query url
   var uri = base_url + searchQuery + url_suffix;
@@ -27,20 +29,20 @@ services.factory('searchYouTube', function ($http) {
       var searchResults = resp.data.items;
 
       // Limit = # of search results per page, returned from spotify
-      // var limit = searchResults["tracks"]["limit"];
+      // var limit = searchResults['tracks']['limit'];
       // Array of track objects from search
-      // var items = searchResults["tracks"]["items"];
+      // var items = searchResults['tracks']['items'];
 
       var results = [];
 
       // Iterate through search results,
       _.each(searchResults, function(item) {
         var entry = {
-          "title": item.snippet.title,
-          "uri": item.id.videoId
+          'title': item.snippet.title,
+          'uri': item.id.videoId
         };
-        _.each(item["artists"], function(artist) {
-            entry["artists"].push(artist["name"]);
+        _.each(item['artists'], function(artist) {
+            entry['artists'].push(artist['name']);
         });
         // console.log(entry)
         results.push(entry);
@@ -55,6 +57,7 @@ services.factory('searchYouTube', function ($http) {
   };
 });
 
+*/
 services.factory('playlistDatabase', function($http) {
 
     // this is our get request for our db for the current playlist in the room
