@@ -1,9 +1,9 @@
 var party = angular.module('grizzly.party', ['ngTable']);
 
-party.controller('PartyController', function ($scope, $location) {
+party.controller('PartyController', function ($scope, $window, $location) {
 
   $scope.party = {
-    name: 'default',
+    name: $window.party.name || 'default',
     nowPlaying: {artist: 'Ozma', title: 'Domino Effect'}
   };
 

@@ -8,7 +8,15 @@ enqueue.controller('EnqueueController', function ($scope, $window, searchYouTube
   $scope.$back = function() { 
     window.history.back();
   };
-
+  
+  /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  * Author: Metallic Gazelle
+  * Edited by: Nate Meier
+  * Description: This function uses the searchYouTube factory to poll the 
+  *              YouTube API for videos that match the 'reqString'. It saves
+  *              the response in a $scope variable named results, which is 
+  *              used to render YouTube videos on the enqueue.html page.
+  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
   $scope.getSongs = function(reqString) {
     searchYouTube.getData(reqString)
       .then(function(data) {

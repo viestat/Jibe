@@ -1,12 +1,16 @@
 var portal = angular.module('grizzly.portal', ['grizzly.enqueue']);
 
 portal.controller('PortalController', function ($scope) {
+
+  /* This can probably be deleted. We don't use it. -- Nate Meier
   $scope.modalShown = false;
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
   };
+  */
 });
 
+/* This can probably be deleted. We don't use it. -- Nate Meier
 portal.directive('modalDialog', function() {
   return {
     restrict: 'E',
@@ -17,10 +21,12 @@ portal.directive('modalDialog', function() {
     transclude: true, // we want to insert custom content inside the directive
     link: function(scope, element, attrs) {
       scope.dialogStyle = {};
-      if (attrs.width)
+      if (attrs.width) {
         scope.dialogStyle.width = attrs.width;
-      if (attrs.height)
+      }
+      if (attrs.height) {
         scope.dialogStyle.height = attrs.height;
+      }
       scope.hideModal = function() {
         scope.show = false;
       };
@@ -28,3 +34,4 @@ portal.directive('modalDialog', function() {
     template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
   };
 });
+*/

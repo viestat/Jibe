@@ -1,27 +1,54 @@
 var host = angular.module('grizzly.host', []);
 
-host.controller('HostController', function ($scope) {
+host.controller('HostController', function ($scope, $window, HostServices) {
   
   $scope.party = {
-    name: window.party.name,
-    isDisabled: window.party.isDisabled
-  }
+    name: $window.party.name,
+    isDisabled: $window.party.isDisabled
+    // name: $window.localStorage.getItem(party.name),
+    // isDisabled: $window.localStorage.getItem(party.isDisabled)
+  };
   $scope.disabled = false;
 
   $scope.nameParty = function (name) {
     console.log('naming party:', name);
     $scope.disabled = true;
-    window.party.name = name;
-    window.party.isDisabled = true;
+    $window.party.name = name;
+    $window.party.isDisabled = true;
+    // $window.localStorage.setItem(party.name, name);
+    // $window.localStorage.setItem(party.isDisabled, true);  
   };
 
-  // I don't know what this does -- Nate Meier
+  $scope.startParty = function () {
+    console.log('Start party, controller.');
+    HostServices.startParty();
+  };
+
+  // I don't know what this does. We can probably delete it. -- Nate Meier
   // $scope.modalShown = false;
   // $scope.toggleModal = function() {
   //   $scope.modalShown = !$scope.modalShown;
   // };
 });
 
+host.factory('HostServices', function ($http) {
+
+  var startParty = function () {
+    console.log('Start party, factory.');
+
+    return $http
+      .post('/api/startParty', $window.party.name)
+      .then( function (response) {
+        console.log('start party response:', response);
+      });
+    });
+  };
+
+  return {
+    startParty: startParty
+  };
+
+});
 // I don't know what any of this does -- Nate Meier
 // host.directive('modalDialog', function() {
 //   return {
