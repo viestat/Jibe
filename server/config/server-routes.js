@@ -64,7 +64,7 @@ exports.joinParty = function (req, res) {
 exports.addSong = function (req, res) {
   console.log('Add song to db.');
   // Song parameters
-  var party = req.body.party; //<------ need to figure out how this is sended
+  var party = req.body.party;
   var title = req.body.title;
   var videoId = req.body.videoId;
   var score = 0;

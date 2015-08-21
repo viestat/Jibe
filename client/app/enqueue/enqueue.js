@@ -1,6 +1,6 @@
 var enqueue = angular.module('grizzly.enqueue', ['ngTable', 'grizzly.services']);
 
-enqueue.controller('EnqueueController', function ($scope, searchYouTube, addToQueue) {
+enqueue.controller('EnqueueController', function ($scope, $window, searchYouTube, addToQueue) {
 
   // the results array that houses the songs currently in the queue
   $scope.results = [];
@@ -25,11 +25,8 @@ enqueue.controller('EnqueueController', function ($scope, searchYouTube, addToQu
     //  uri: "36F9LKMDaOY", 
     //  $$hashKey: "object:250"
     // }
-
+    song.party = $window.localStorage.party;
     addToQueue.sendSong(song);
-
-
-
   };
 
 
