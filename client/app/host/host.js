@@ -1,22 +1,18 @@
 var host = angular.module('grizzly.host', []);
 
 host.controller('HostController', function ($scope, $window, HostServices) {
-  
+  $scope.disabled = false;
+
   $scope.party = {
     name: $window.party.name,
     isDisabled: $window.party.isDisabled
-    // name: $window.localStorage.getItem(party.name),
-    // isDisabled: $window.localStorage.getItem(party.isDisabled)
   };
-  $scope.disabled = false;
 
   $scope.nameParty = function (name) {
     console.log('naming party:', name);
     $scope.disabled = true;
     $window.party.name = name;
     $window.party.isDisabled = true;
-    // $window.localStorage.setItem(party.name, name);
-    // $window.localStorage.setItem(party.isDisabled, true);  
   };
 
   $scope.startParty = function () {
@@ -24,11 +20,13 @@ host.controller('HostController', function ($scope, $window, HostServices) {
     HostServices.startParty();
   };
 
-  // I don't know what this does. We can probably delete it. -- Nate Meier
-  // $scope.modalShown = false;
-  // $scope.toggleModal = function() {
-  //   $scope.modalShown = !$scope.modalShown;
-  // };
+  $scope.resetStorage = function () {
+    console.log('reset storage');
+    $window.localStorage.setItem(party.name, "");
+    $window.localStorage.setItem(party.isDisabled, false);
+    $scope.disabled = false;
+  };
+
 });
 
 host.factory('HostServices', function ($http, $window) {

@@ -14,9 +14,11 @@
                    name="party-name"
                    ng-maxlength="25"
                    maxlength="25"
-                   ng-disabled="party.isDisabled || disabled"> </input>
+                   ng-disabled="party.isDisabled || disabled"
+                   ng-style="ng-disabled && {'background-color': '#8A9676'}"></input>
           </form>
         </div>
+
       <a href="#/enqueue">
         <div class="start-button dark-button button">
           <span class="bold">ADD</span><span class="normal"> SONGS TO QUEUE</span>
