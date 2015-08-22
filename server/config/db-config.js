@@ -15,16 +15,7 @@ var partySchema = mongoose.Schema ({
   playlist: { type: Array , default: [] }
 });
 
-// // Define song schema
-// var songSchema = mongoose.Schema ({
-//   videoId: { type: String, index: { unique: true } },
-//   title: String,
-//   score: Number,
-//   played: { type: Boolean , default: false }
-// });
-
 var Party = mongoose.model('Party', partySchema);
-// var Song = mongoose.model('Song', songSchema);
 
 module.exports = Party;
 

@@ -13,18 +13,12 @@ host.controller('HostController', function ($scope, $window, HostServices) {
     $scope.disabled = true;
     $window.party.name = name;
     $window.party.isDisabled = true;
+    HostServices.createParty(name);
   };
 
   $scope.startParty = function () {
     console.log('Start party, controller.');
     HostServices.startParty();
-  };
-
-  $scope.resetStorage = function () {
-    console.log('reset storage');
-    $window.localStorage.setItem(party.name, "");
-    $window.localStorage.setItem(party.isDisabled, false);
-    $scope.disabled = false;
   };
 
 });
@@ -41,8 +35,21 @@ host.factory('HostServices', function ($http, $window) {
     });
   };
 
+  var createParty = function () {
+    console.log('Store party in DB.');
+
+    return $http({
+      method: 'POST',
+      url: '/api/createParty',
+      data: JSON.stringify({ 
+        name: $window.party.name 
+      })
+    });
+  };
+
   return {
-    startParty: startParty
+    startParty: startParty,
+    createParty: createParty
   };
 
 });
