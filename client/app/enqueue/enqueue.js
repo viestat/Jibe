@@ -33,7 +33,7 @@ enqueue.controller('EnqueueController', function ($scope, $window, searchYouTube
     //  uri: "36F9LKMDaOY", 
     //  $$hashKey: "object:250"
     // }
-    song.party = $window.localStorage.party;
+    song.party = $window.party.name;
     addToQueue.sendSong(song);
   };
 
