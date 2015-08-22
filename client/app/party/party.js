@@ -17,11 +17,11 @@ party.controller('PartyController', function ($scope, $window, $location, getPla
       if(song.score >= max && !song.played){
         res = song.uri
         song.played = true;
-      }
+      } 
     });
-    return res;
+  $scope.url = '//www.youtube.com/embed/'+ res + '?rel=0&autoplay=1';
   }
-  $scope.url = '//www.youtube.com/embed/'+ $scope.getNext() + '?rel=0&autoplay=1';
+  $scope.url = 'https://www.youtube.com/watch?v=oRSijEW_cDM'
   // [
   //   {artist: 'Weezer', title: 'Buddy Holly', score: 5},
   //   {artist: 'Nirvana', title: 'Smells Like Teen Spirit', score: 2},
