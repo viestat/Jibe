@@ -12,17 +12,14 @@ exports.getPlaylist = function (req, res) {
 };
 
 exports.createParty = function (req, res) {
-  console.log('Create party.');
-  // Party name
   var name = req.body.name;
-  var owner = req.body.owner || 'anonymous';
+  console.log('Create party:', name);
 
   Party.findOne({ name: name })
     .exec(function(err, party) {
       if (!party) {
         var newParty = new Party({
           name: name,
-          owner: owner,
           playlist: []
         });
 
