@@ -2,6 +2,8 @@
 // ----------------------------------------------
 var BluebirdPromise = require('bluebird');
 var mongoose = require('mongoose');
+
+var uri = process.env.MONGO_URI || 'mongodb://localhost:27017/grizzly';
 // var bcrypt = require('bcrypt-nodejs');
 
 // Connect to Grizzly 
